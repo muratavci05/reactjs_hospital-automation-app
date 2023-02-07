@@ -1,0 +1,37 @@
+Kullanılacak teknolojiler,
+
+1. Fake API (backend için) json server,
+2. Yapılacak istekler için axios,
+3. Sayfalama için react-rotuer-dom 6,
+4. State management(Redux),
+5. UI (user interface) material UI
+
+iş kuralları: 
+
+-> Projede iki sayfa olacak, 
+    - randuvular listelenecek,
+    - randevular eklenebilecek -iptal edilebilecek-güncellenebilecek,
+    - randevu eklendiğinde hasta otomatik olarak oluşturulacak,
+
+-> Randevuda bulunacak bilgiler,
+{
+    id,
+    date,
+    hastaId
+}
+-> Hastada bulunacak bilgiler,
+{
+    id,
+    name,
+    surname,
+    phone,
+    islemler:[]
+}
+->Islemler,
+{
+    id,
+    sikayet,
+    uygulananTedavi,
+    yazilanIlaclar
+
+}
