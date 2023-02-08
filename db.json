@@ -1,0 +1,33 @@
+{
+    "randevular": [
+        {
+            "id":"1",
+            "date":"08.02.2023",
+            "hastaId":"1"  
+        }
+    ],
+    "hatalar": [
+        {
+            "id":"1",
+            "name":"test",
+            "surname":"test",
+            "phone":"5550000000",
+            "islemId": []
+        }
+    ],
+    "islemler": [
+        {
+            "id":"1",
+            "sikayet":"corona",
+            "uygulananTedavi":"7 gun hastane yatış,istiharat",
+            "yazilanIlaclar":["parol,vitaminD,vitaminC"]
+        },
+        {
+            "id":"2",
+            "sikayet":"eklem ağrısı",
+            "uygulananTedavi":"ayakta tedavi",
+            "yazilanIlaclar":["minoset","voltaren","vitaminB"]
+
+        }
+    ]
+}
