@@ -1,8 +1,13 @@
 import React from 'react'
+import DataTable from '../components/home/DataTable'
 
-const Home = () => {
+const Home = (props) => {
   return (
-    <div>Home</div>
+    <div>
+        <DataTable/>
+        
+    </div>
+            
   )
 }
 

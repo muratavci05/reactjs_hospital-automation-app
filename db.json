@@ -3,16 +3,23 @@
         {
             "id":"1",
             "date":"08.02.2023",
-            "hastaId":"1"  
+            "hastaId":"1",
+            "doctorId":"1"
         }
     ],
-    "hatalar": [
+    "hastalar": [
         {
             "id":"1",
             "name":"test",
             "surname":"test",
             "phone":"5550000000",
             "islemId": []
+        }
+    ],
+    "doktorlar": [
+        {
+            "id":"1",
+            "doktorsurname":"hekim1"
         }
     ],
     "islemler": [
