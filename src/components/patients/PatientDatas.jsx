@@ -15,6 +15,7 @@ import "./style.css";
 
 const PatientDatas = (props) => {
   const [hastalar, setHastalar] = useState(null);
+  const [doctors,setDoctors]= useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,10 +24,15 @@ const PatientDatas = (props) => {
       .then((hastalarRes) => {
         setHastalar(hastalarRes.data);
       })
+      axios
+      .get("http://localhost:3004/doktorlar")
+      .then((res)=>{
+        setDoctors("doktorlar hastalar",res.data)
+      })
       .catch((err) => console.log("hastalar err", err));
   }, []);
 
-  if (hastalar === null) {
+  if (hastalar === null || doctors === null) {
     return <h1>Loadign...</h1>;
   }
   return (
@@ -51,6 +57,7 @@ const PatientDatas = (props) => {
           </TableHead>
           <TableBody>
             {hastalar.map((hasta) => (
+              
               <TableRow
                 key={hasta.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -58,7 +65,7 @@ const PatientDatas = (props) => {
                 <TableCell>{hasta.name}</TableCell>
                 <TableCell>{hasta.surname}</TableCell>
                 <TableCell>{hasta.phone}</TableCell>
-                <TableCell>doktor ismi</TableCell>
+                <TableCell>{hasta.doctor}</TableCell>
                 <TableCell>buraya buton gelecek</TableCell>
               </TableRow>
             ))}

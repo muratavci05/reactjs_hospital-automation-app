@@ -1,52 +1,74 @@
 {
-    "randevular": [
-        {
-            "id":"1",
-            "date":"08.02.2023",
-            "hastaId":"1",
-            "doctorId":"1"
-        }
-    ],
-    "hastalar": [
-        {
-            "id":"1",
-            "name":"test",
-            "surname":"test",
-            "phone":"5550000000",
-            "islemId": ["1"]
-        }
-    ],
-    "doktorlar": [
-        {
-            "id":"1",
-            "fullname":"dahiliye hekim1"
-        },
-        {
-            "id":"2",
-            "fullname":"dahiliye hekim2"
-        },
-        {
-            "id":"3",
-            "fullname":"İç hastalıklar hekim1"
-        },
-        {
-            "id":"4",
-            "fullname":"Çocuk hekim1"
-        }
-    ],
-    "islemler": [
-        {
-            "id":"1",
-            "sikayet":"corona",
-            "uygulananTedavi":"7 gun hastane yatış,istiharat",
-            "yazilanIlaclar":["parol,vitaminD,vitaminC"]
-        },
-        {
-            "id":"2",
-            "sikayet":"eklem ağrısı",
-            "uygulananTedavi":"ayakta tedavi",
-            "yazilanIlaclar":["minoset","voltaren","vitaminB"]
-
-        }
-    ]
+  "randevular": [
+    {
+      "id": "1",
+      "date": "08.02.2023",
+      "hastaId": "1",
+      "doctorId": "1"
+    }
+  ],
+  "hastalar": [
+    {
+      "id": "1",
+      "name": "test",
+      "surname": "test",
+      "phone": "5550000000",
+      "doctor": "çocuk hekimi1",
+      "islemId": [
+        "1"
+      ]
+    },
+    {
+      "id": 1676051592975,
+      "name": "sinem",
+      "surname": "avcı",
+      "phone": "121",
+      "doctor": "dahiliye hekimi1"
+    },
+    {
+      "id": 1676054122296,
+      "name": "deneme hasta",
+      "surname": "soyadı hasta",
+      "phone": "2120000000",
+      "doctor": "İç hastalıklar hekim1"
+    }
+  ],
+  "doktorlar": [
+    {
+      "id": "1",
+      "fullname": "dahiliye hekim1"
+    },
+    {
+      "id": "2",
+      "fullname": "dahiliye hekim2"
+    },
+    {
+      "id": "3",
+      "fullname": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "4",
+      "fullname": "Çocuk hekim1"
+    }
+  ],
+  "islemler": [
+    {
+      "id": "1",
+      "sikayet": "corona",
+      "uygulananTedavi": "7 gun hastane yatış,istiharat",
+      "yazilanIlaclar": [
+        "parol,vitaminD,vitaminC"
+      ]
+    },
+    {
+      "id": "2",
+      "sikayet": "eklem ağrısı",
+      "uygulananTedavi": "ayakta tedavi",
+      "yazilanIlaclar": [
+        "minoset",
+        "voltaren",
+        "vitaminB"
+      ]
+    }
+  ]
 }

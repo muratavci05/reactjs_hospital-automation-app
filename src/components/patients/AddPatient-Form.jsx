@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -30,6 +31,8 @@ const AddPatientForm = () => {
   const [phone, setPhone] = useState("");
   const [doctor, setDoctor] = useState("");
 
+  const navigate = useNavigate();
+
   //Doktor listesi çekmek için kullanılan state
   const [doctors, setDoctors] = useState(null);
 
@@ -43,18 +46,40 @@ const AddPatientForm = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (name === "" || surname === "" || phone === "" || doctor === ""){
-      alert ("Hasta Bilgilerini Eksiksiz Doldurunuz")
+    if (name === "" || surname === "" || phone === "" || doctor === "") {
+      alert("Hasta Bilgilerini Eksiksiz Doldurunuz");
       return;
     }
 
-   /*  console.log("adı",name)
+    const newPatient = {
+      id: new Date().getTime(),
+      name: name,
+      surname: surname,
+      phone: phone,
+      doctor: doctor,
+    };
+    //console.log("yeni hasta", newPatient);
+
+    //yeni hasta kaydını veritabanına kaydetme
+    axios
+      .post("http://localhost:3004/hastalar/", newPatient)
+      .then((res) => {
+        console.log("new patients", res);
+        setName("");
+        setSurname("");
+        setPhone("");
+        setDoctor("");
+        navigate("/patients");
+      })
+      .catch((err) => console.log(err));
+
+    /*  console.log("adı",name)
     console.log("soyadı",surname)
     console.log("telefon",phone)
     console.log("doktor adı",doctor) */
-  }
+  };
 
   if (doctors === null) {
     return <h1>Loading...</h1>;
@@ -95,18 +120,17 @@ const AddPatientForm = () => {
         {/* selectbar */}
 
         <FormControl sx={{ minWidth: 360 }}>
-          <InputLabel id="demo-simple-select-label">Doktor</InputLabel>
+          <InputLabel id="demo-simple-select-label">Doktor Seçiniz</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            label="Doctor"
+            label="Doctor Seçiniz"
             value={doctor}
-            onChange={(event)=>setDoctor(event.target.value)}
+            onChange={(event) => setDoctor(event.target.value)}
           >
             {doctors.map((selectDoctor) => {
               return (
-                <MenuItem value={selectDoctor.id}
-                >
+                <MenuItem value={selectDoctor.fullname}>
                   {selectDoctor.fullname}
                 </MenuItem>
               );
