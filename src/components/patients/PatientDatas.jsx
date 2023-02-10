@@ -1,6 +1,7 @@
 //hastalar componenti
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,12 +9,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 import "./style.css";
 
 const PatientDatas = (props) => {
   const [hastalar, setHastalar] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -30,9 +32,13 @@ const PatientDatas = (props) => {
   return (
     <div>
       <TableContainer component={Paper}>
-            <div className="kayitButton">
-            <Button variant="outlined" color="primary">Kayıt</Button>
-            </div>
+        <div className="kayitButton">
+          <Button 
+          onClick={()=>navigate("/add-patient")}
+          variant="outlined" color="primary">
+            Kayıt
+          </Button>
+        </div>
         <Table sx={{ minWidth: 650, marginTop: 2 }} aria-label="simple table">
           <TableHead style={{}}>
             <TableRow style={{ backgroundColor: "#A0CCDA" }}>

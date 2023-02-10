@@ -1,5 +1,5 @@
 import React from "react";
-import DataTable from "../components/home/DataTable";
+import DataTable from "../components/home/AppointmentData";
 
 const Home = (props) => {
   return (

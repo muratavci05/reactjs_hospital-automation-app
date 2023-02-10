@@ -9,3 +9,19 @@
     background-color: #2CC4CB;
     color: white;
 }
+
+/* add patient form  */
+.formBox{
+margin: 50px;
+align-items: center;
+
+}
+.row{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.formdata{ 
+    width: 30%;
+    
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import PatientDatas from '../components/patients/PatientDatas'
+import PatientDatas from '../components/patients/patientDatas'
 
 const Patients = () => {
   return (
