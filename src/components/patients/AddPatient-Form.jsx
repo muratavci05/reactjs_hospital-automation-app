@@ -14,6 +14,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import "./style.css";
+import { UndoRounded } from "@mui/icons-material";
 
 function RedBar() {
   return (
@@ -33,18 +34,29 @@ const AddPatientForm = () => {
 
   const navigate = useNavigate();
 
+  // hastalar listesini çekmek için kullanılan state
+  const [patients, setPatients] = useState(null);
   //Doktor listesi çekmek için kullanılan state
   const [doctors, setDoctors] = useState(null);
 
+
   useEffect(() => {
     axios
-      .get("  http://localhost:3004/doktorlar")
+    .get("http://localhost:3004/hastalar")
+    .then((resPatients) => {
+      //console.log("hastalar", rePatients);
+      setPatients(resPatients.data)
+    })
+    .catch((err) => console.log(err));
+    axios
+      .get("http://localhost:3004/doktorlar")
       .then((resDoctors) => {
         //console.log("listDoctor",resDoctors)
         setDoctors(resDoctors.data);
       })
       .catch((err) => console.log(err));
   }, []);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,8 +65,14 @@ const AddPatientForm = () => {
       return;
     }
 
+    if (phone.length !== 11) {
+      alert("Telefon Numarası 11 Haneli Olmalıdır");
+      return;
+    }
+
+   
     const newPatient = {
-      id: new Date().getTime(),
+      id: String(new Date().getTime()),
       name: name,
       surname: surname,
       phone: phone,
@@ -62,7 +80,14 @@ const AddPatientForm = () => {
     };
     //console.log("yeni hasta", newPatient);
 
-    //yeni hasta kaydını veritabanına kaydetme
+    
+    //aynı telefon numarasına ait olan hastanın tekrardan kayıt altına alınmaması için
+    const hasNumber = patients.find((hastalar)=>hastalar.phone === phone)
+      if(hasNumber !== undefined){
+        alert("Bu Telefon Numarasına Ait Hasta Kaydı Bulunmaktadır!")
+        return;
+      }
+      //yeni hasta kaydını veritabanına kaydetme
     axios
       .post("http://localhost:3004/hastalar/", newPatient)
       .then((res) => {
@@ -79,7 +104,12 @@ const AddPatientForm = () => {
     console.log("soyadı",surname)
     console.log("telefon",phone)
     console.log("doktor adı",doctor) */
+    
+
   };
+
+  
+
 
   if (doctors === null) {
     return <h1>Loading...</h1>;
@@ -130,7 +160,7 @@ const AddPatientForm = () => {
           >
             {doctors.map((selectDoctor) => {
               return (
-                <MenuItem value={selectDoctor.fullname}>
+                <MenuItem key={selectDoctor.id} value={selectDoctor.fullname}>
                   {selectDoctor.fullname}
                 </MenuItem>
               );
