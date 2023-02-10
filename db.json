@@ -19,7 +19,19 @@
     "doktorlar": [
         {
             "id":"1",
-            "doktorsurname":"hekim1"
+            "fullname":"dahiliye hekim1"
+        },
+        {
+            "id":"2",
+            "fullname":"dahiliye hekim2"
+        },
+        {
+            "id":"3",
+            "fullname":"İç hastalıklar hekim1"
+        },
+        {
+            "id":"4",
+            "fullname":"Çocuk hekim1"
         }
     ],
     "islemler": [
