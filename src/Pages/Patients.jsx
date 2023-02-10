@@ -1,11 +1,13 @@
 import React from 'react'
+import PatientDatas from '../components/patients/PatientDatas'
 
-const Patients = (props) => {
+const Patients = () => {
   return (
     <div>
-       Burası Hastalar sayfası
-        </div>
+{/*       <span>hastalar sayfası</span>
+ */}      <PatientDatas/>
+      </div>
   )
 }
 
-export default Patients;
+export default Patients

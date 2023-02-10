@@ -1,0 +1,11 @@
+.kayitButton{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+    margin-top:3px;
+    margin-bottom: -13px;
+}
+.kayitButton Button:hover{
+    background-color: #2CC4CB;
+    color: white;
+}

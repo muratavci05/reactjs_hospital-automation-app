@@ -34,14 +34,20 @@ export default function BasicTable() {
           .get("http://localhost:3004/hastalar")
           .then((resHastalar) => {
             setHastalar(resHastalar.data);
+            axios
+              .get("http://localhost:3004/doktorlar")
+              .then((resDoktorlar) => {
+                setDoktorlar(resDoktorlar.data);
+              })
+              .catch((err) => console.log("seçilen doktorlar hata", err));
           })
           .catch((err) => console.log("hastalar hata", err));
       })
       .catch((err) => console.log("Randevular Hata", err));
-  },[]);
+  }, []);
 
-  //seçilen doktor çekimi
-  useEffect (()=> {
+  //seçilen doktor çekimi bu şekilde de oluyor
+  /*  useEffect (()=> {
     axios
     .get("http://localhost:3004/doktorlar")
     .then((resDoktorlar) => {
@@ -49,15 +55,15 @@ export default function BasicTable() {
     })
     .catch((err) => console.log("seçilen doktorlar hata", err));
 
-  },[]);
+  },[]); */
 
-  if (randevular === null || hastalar === null) {
+  if (randevular === null || hastalar === null || doktorlar === null) {
     return <h1>Loading...</h1>;
   }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, marginTop: 2 }} aria-label="simple table">
-        <TableHead style={{}}>
+        <TableHead >
           <TableRow style={{ backgroundColor: "#A0CCDA" }}>
             <TableCell>Tarih</TableCell>
             <TableCell>Adı</TableCell>
@@ -73,11 +79,12 @@ export default function BasicTable() {
               (hasta) => hasta.id === randevu.hastaId
             );
             const secilenDoktor = doktorlar.find(
-              (doctor) => doctor.id === randevu.doctorId
+              (doktor) => doktor.id === randevu.doctorId
             );
             return (
               <TableRow
                 key={randevu.id}
+                
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">

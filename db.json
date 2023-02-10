@@ -13,7 +13,7 @@
             "name":"test",
             "surname":"test",
             "phone":"5550000000",
-            "islemId": []
+            "islemId": ["1","2"]
         }
     ],
     "doktorlar": [
