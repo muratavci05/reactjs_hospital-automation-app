@@ -14,7 +14,7 @@
       "surname": "test",
       "phone": "05550000000",
       "doctor": "çocuk hekimi1",
-      "islemId": [
+      "transactionsIds": [
         "1"
       ]
     },
@@ -38,6 +38,23 @@
       "surname": "avcı",
       "phone": "04541232323",
       "doctor": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "1676060886084",
+      "name": "e",
+      "surname": "e",
+      "phone": "05000001219",
+      "doctor": "dahiliye hekim1"
+    },
+    {
+      "id": "1676064818320",
+      "name": "ahmet",
+      "surname": "hamdi",
+      "phone": "02001113322",
+      "transactionsIds": [
+        "1676064818314"
+      ],
+      "doctor": "dahiliye hekim2"
     }
   ],
   "doktorlar": [
@@ -61,21 +78,27 @@
   "islemler": [
     {
       "id": "1",
-      "sikayet": "corona",
-      "uygulananTedavi": "7 gun hastane yatış,istiharat",
-      "yazilanIlaclar": [
+      "discomfort": "corona",
+      "treatmentApplied": "7 gun hastane yatış,istiharat",
+      "prescriptions": [
         "parol,vitaminD,vitaminC"
       ]
     },
     {
       "id": "2",
-      "sikayet": "eklem ağrısı",
-      "uygulananTedavi": "ayakta tedavi",
-      "yazilanIlaclar": [
+      "discomfort": "eklem ağrısı",
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
         "minoset",
         "voltaren",
         "vitaminB"
       ]
+    },
+    {
+      "id": "1676064818314",
+      "discomfort": "discomfort",
+      "treatmentApplied": "",
+      "prescriptions": []
     }
   ]
 }

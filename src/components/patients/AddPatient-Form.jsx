@@ -14,7 +14,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import "./style.css";
-import { UndoRounded } from "@mui/icons-material";
 
 function RedBar() {
   return (
@@ -30,6 +29,7 @@ const AddPatientForm = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
+  const [transactions, setTransactions] = useState("");
   const [doctor, setDoctor] = useState("");
 
   const navigate = useNavigate();
@@ -39,15 +39,14 @@ const AddPatientForm = () => {
   //Doktor listesi çekmek için kullanılan state
   const [doctors, setDoctors] = useState(null);
 
-
   useEffect(() => {
     axios
-    .get("http://localhost:3004/hastalar")
-    .then((resPatients) => {
-      //console.log("hastalar", rePatients);
-      setPatients(resPatients.data)
-    })
-    .catch((err) => console.log(err));
+      .get("http://localhost:3004/hastalar")
+      .then((resPatients) => {
+        //console.log("hastalar", rePatients);
+        setPatients(resPatients.data);
+      })
+      .catch((err) => console.log(err));
     axios
       .get("http://localhost:3004/doktorlar")
       .then((resDoctors) => {
@@ -56,11 +55,10 @@ const AddPatientForm = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (name === "" || surname === "" || phone === "" || doctor === "") {
+    if (name === "" || surname === "" || phone === "" || transactions === "" || doctor === "") {
       alert("Hasta Bilgilerini Eksiksiz Doldurunuz");
       return;
     }
@@ -70,25 +68,34 @@ const AddPatientForm = () => {
       return;
     }
 
-   
-    const newPatient = {
-      id: String(new Date().getTime()),
-      name: name,
-      surname: surname,
-      phone: phone,
-      doctor: doctor,
-    };
+    
     //console.log("yeni hasta", newPatient);
 
-    
     //aynı telefon numarasına ait olan hastanın tekrardan kayıt altına alınmaması için
-    const hasNumber = patients.find((hastalar)=>hastalar.phone === phone)
-      if(hasNumber !== undefined){
-        alert("Bu Telefon Numarasına Ait Hasta Kaydı Bulunmaktadır!")
-        return;
-      }
-      //yeni hasta kaydını veritabanına kaydetme
-    axios
+    const hasNumber = patients.find((hastalar) => hastalar.phone === phone);
+    if (hasNumber !== undefined) {
+      alert("Bu Telefon Numarasına Ait Hasta Kaydı Bulunmaktadır!");
+      return;
+    }
+
+    const newTransaction ={
+      id: String(new Date().getTime()+1),
+      discomfort: "discomfort",
+      treatmentApplied:"",
+      prescriptions:[]
+
+    }
+    axios.post("http://localhost:3004/islemler/",newTransaction)
+    .then((resTransaction)=>{
+      const newPatient = {
+        id: String(new Date().getTime()),
+        name: name,
+        surname: surname,
+        phone: phone,
+        transactionsIds: [newTransaction.id],
+        doctor: doctor,
+      };
+      axios
       .post("http://localhost:3004/hastalar/", newPatient)
       .then((res) => {
         console.log("new patients", res);
@@ -99,17 +106,17 @@ const AddPatientForm = () => {
         navigate("/patients");
       })
       .catch((err) => console.log(err));
+    })
+    .catch((err)=>console.log(err))
+
+    //yeni hasta kaydını veritabanına kaydetme
+    /*  */
 
     /*  console.log("adı",name)
     console.log("soyadı",surname)
     console.log("telefon",phone)
     console.log("doktor adı",doctor) */
-    
-
   };
-
-  
-
 
   if (doctors === null) {
     return <h1>Loading...</h1>;
@@ -141,12 +148,21 @@ const AddPatientForm = () => {
         />
         <RedBar />
         <TextField
+          type={"number"}
           label={"Telefon Numarası"}
           id="margin-none"
           value={phone}
           onChange={(event) => setPhone(event.target.value)}
         />
         <RedBar />
+        <TextField
+          label={"Hastanın Şikayeti | Rahatsızlığı"}
+          id="margin-none"
+          value={transactions}
+          onChange={(event) => setTransactions(event.target.value)}
+        />
+        <RedBar />
+
         {/* selectbar */}
 
         <FormControl sx={{ minWidth: 360 }}>

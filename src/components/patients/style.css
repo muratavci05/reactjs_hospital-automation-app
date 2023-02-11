@@ -26,3 +26,12 @@ align-items: center;
     
 }
 
+.patientsButtons Button {
+    font-size: 10px;
+    background-color: rgb(7, 188, 244);
+    color: white;
+}
+
+.patientsButtons Button:hover {
+    color:#2871df;
+}
