@@ -80,7 +80,7 @@ const AddPatientForm = () => {
 
     const newTransaction ={
       id: String(new Date().getTime()+1),
-      discomfort: "discomfort",
+      discomfort: "",
       treatmentApplied:"",
       prescriptions:[]
 

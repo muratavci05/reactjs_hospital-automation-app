@@ -17,9 +17,10 @@ import "./style.css";
 const PatientDatas = (props) => {
   const [hastalar, setHastalar] = useState(null);
   const [doctors, setDoctors] = useState(null);
+  const [islemler, setIslemler]=useState(null)
   const navigate = useNavigate();
 
-  const [updateComponent, setDidUpdateComponent] = useState(false);
+  const [updateComponent, setUpdateComponent] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:3004/hastalar").then((hastalarRes) => {
@@ -29,29 +30,37 @@ const PatientDatas = (props) => {
       .get("http://localhost:3004/doktorlar")
       .then((res) => {
         setDoctors("doktorlar hastalar", res.data);
+      });
+      axios
+      .get("http://localhost:3004/islemler")
+      .then((resIslemler)=>{
+        setIslemler("islemler",resIslemler.data);
       })
+      .catch((err)=>console.log(err))
+
       .catch((err) => console.log("hastalar err", err));
-  }, [updateComponent]);
+  }, [updateComponent,islemler]);
 
   const handleDeletePatient = (hasta) => {
     console.log(hasta);
 
     axios
-      .get(`http://localhost:3004/hastalar/${hasta.id}`)
-      .then((DeletePatientResponse) => {
+      .delete(`http://localhost:3004/hastalar/${hasta.id}`)
+      .then((DeletePatientRes) => {
         hasta.transactionsIds.map((islemId) => {
           axios
-            .delete(`https://localhost:3004/islemler/${islemId}`)
-            .then((islemDeleteRes) => {
+            .delete(`http://localhost:3004/islemler/${islemId}`)
+            .then((IslemDeleteRes) => {
 
             })
-            .catch((err => console.log("işlemler silme", err))
-
+            .catch((err) => console.log(err));
+        });
+        setUpdateComponent(!updateComponent);
       })
-      .catch((err) => console.log("hasta silme", err));
+      .catch((err) => console.log(err));
   };
 
-  if (hastalar === null || doctors === null) {
+  if (hastalar === null || doctors === null || islemler === null) {
     return <h1>Loadign...</h1>;
   }
 
@@ -78,6 +87,13 @@ const PatientDatas = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
+            {
+              hastalar.length === 0 && (
+                <TableRow>
+                  <TableCell align="center" colSpan={4}>Kayıtlı Hasta Bulunmamaktadır</TableCell>
+                </TableRow>
+              )
+            }
             {hastalar.map((hasta) => (
               <TableRow
                 key={hasta.id}

@@ -83,7 +83,7 @@ export default function BasicTable() {
                 <TableCell>{aradigimHasta.name}</TableCell>
                 <TableCell>{aradigimHasta.surname}</TableCell>
                 <TableCell>{aradigimHasta.phone}</TableCell>
-                <TableCell>{secilenDoktor.doktorsurname}</TableCell>
+                <TableCell>{secilenDoktor.fullname}</TableCell>
                 <TableCell>buraya buton gelecek</TableCell>
               </TableRow>
             );
