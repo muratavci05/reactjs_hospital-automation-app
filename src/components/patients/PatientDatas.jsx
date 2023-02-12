@@ -17,7 +17,8 @@ import "./style.css";
 const PatientDatas = (props) => {
   const [hastalar, setHastalar] = useState(null);
   const [doctors, setDoctors] = useState(null);
-  const [islemler, setIslemler]=useState(null)
+  const [islemler, setIslemler] = useState(null);
+  const [randevular, setRandevular] = useState(null);
   const navigate = useNavigate();
 
   const [updateComponent, setUpdateComponent] = useState(false);
@@ -26,41 +27,55 @@ const PatientDatas = (props) => {
     axios.get("http://localhost:3004/hastalar").then((hastalarRes) => {
       setHastalar(hastalarRes.data);
     });
+    axios.get("http://localhost:3004/doktorlar").then((res) => {
+      setDoctors("doktorlar hastalar", res.data);
+    });
+    axios.get("http://localhost:3004/islemler").then((resIslemler) => {
+      setIslemler("islemler", resIslemler.data);
+    });
     axios
-      .get("http://localhost:3004/doktorlar")
-      .then((res) => {
-        setDoctors("doktorlar hastalar", res.data);
-      });
-      axios
-      .get("http://localhost:3004/islemler")
-      .then((resIslemler)=>{
-        setIslemler("islemler",resIslemler.data);
+      .get("http://localhost:3004/randevular")
+      .then((resRandevular) => {
+        //console.log("randevu",resRandevular)
+        setRandevular(resRandevular.data);
       })
-      .catch((err)=>console.log(err))
+      .catch((err) => console.log(err))
 
       .catch((err) => console.log("hastalar err", err));
-  }, [updateComponent,islemler]);
+  }, [updateComponent]);
 
   const handleDeletePatient = (hasta) => {
     console.log(hasta);
-
+    //randevuları silmek için
+    const filteredRandevular = randevular.filter(
+      (item) => item.hastaId === hasta.id
+    );
+    console.log("filtrelenmiş randevular", filteredRandevular);
     axios
       .delete(`http://localhost:3004/hastalar/${hasta.id}`)
       .then((DeletePatientRes) => {
         hasta.transactionsIds.map((islemId) => {
           axios
             .delete(`http://localhost:3004/islemler/${islemId}`)
-            .then((IslemDeleteRes) => {
-
-            })
+            .then((IslemDeleteRes) => {})
             .catch((err) => console.log(err));
         });
+        filteredRandevular.map(item=>{
+          axios.delete(`http://localhost:3004/randevular/${item.id}`)
+          .then((res)=>{})
+          .catch((err)=>console.log(err))
+        })
         setUpdateComponent(!updateComponent);
       })
       .catch((err) => console.log(err));
   };
 
-  if (hastalar === null || doctors === null || islemler === null) {
+  if (
+    hastalar === null ||
+    doctors === null ||
+    islemler === null ||
+    randevular === null
+  ) {
     return <h1>Loadign...</h1>;
   }
 
@@ -87,13 +102,13 @@ const PatientDatas = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {
-              hastalar.length === 0 && (
-                <TableRow>
-                  <TableCell align="center" colSpan={4}>Kayıtlı Hasta Bulunmamaktadır</TableCell>
-                </TableRow>
-              )
-            }
+            {hastalar.length === 0 && (
+              <TableRow>
+                <TableCell align="center" colSpan={4}>
+                  Kayıtlı Hasta Bulunmamaktadır
+                </TableCell>
+              </TableRow>
+            )}
             {hastalar.map((hasta) => (
               <TableRow
                 key={hasta.id}

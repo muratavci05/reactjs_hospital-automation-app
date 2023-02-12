@@ -23,6 +23,7 @@ export default function BasicTable() {
           .get("http://localhost:3004/hastalar")
           .then((resHastalar) => {
             setHastalar(resHastalar.data);
+            //console.log("hastalar randevu",resHastalar.data)
             axios
               .get("http://localhost:3004/doktorlar")
               .then((resDoktorlar) => {
@@ -34,6 +35,8 @@ export default function BasicTable() {
       })
       .catch((err) => console.log("Randevular Hata", err));
   }, []);
+
+  
 
   //seçilen doktor çekimi bu şekilde de oluyor
   /*  useEffect (()=> {
@@ -72,8 +75,7 @@ export default function BasicTable() {
             );
             return (
               <TableRow
-                key={randevu.id}
-                
+                key={randevu.id}                
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
