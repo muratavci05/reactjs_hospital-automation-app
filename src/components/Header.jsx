@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import { Link } from "react-router-dom";
 
+
 const Header = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,6 +37,18 @@ const Header = (props) => {
               }}
             >
               Anasayfa
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link
+              to="/appointments"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "13px",
+              }}
+            >
+              Randevular
             </Link>
           </Button>
           <Button color="inherit">

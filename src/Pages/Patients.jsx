@@ -1,13 +1,15 @@
-import React from 'react'
-import PatientDatas from '../components/patients/patientDatas'
+import React from "react";
+import Header from "../components/Header";
+import PatientDatas from "../components/patients/patientDatas";
 
 const Patients = () => {
   return (
     <div>
-{/*       <span>hastalar sayfası</span>
- */}      <PatientDatas/>
-      </div>
-  )
-}
+      <Header />
+      <span>hastalar sayfası</span>
+      <PatientDatas />
+    </div>
+  );
+};
 
-export default Patients
+export default Patients;

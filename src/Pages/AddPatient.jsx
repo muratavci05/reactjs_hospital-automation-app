@@ -1,10 +1,14 @@
-import React from 'react'
-import AddPatientForm from '../components/patients/AddPatient-Form'
+import React from "react";
+import Header from "../components/Header";
+import AddPatientForm from "../components/patients/AddPatient-Form";
 
-export const AddPatient = () => {
+const AddPatient = (props) => {
   return (
     <div>
-        <AddPatientForm/>
+      <Header />
+      <AddPatientForm />
     </div>
-  )
-}
+  );
+};
+
+export default AddPatient;
