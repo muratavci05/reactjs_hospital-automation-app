@@ -1,1 +1,28 @@
 
+.HomePage{
+   
+   background-image: url(/public/assets/banner.jpg);
+   background-size: 100% 100vh;
+   background-color: rgb(30, 83, 60);
+   background-blend-mode: screen;
+   height: 100vh;
+
+   
+}
+
+.bannerPhoto{
+    margin-left: 100px;
+    
+}
+.bannerPhoto img {
+    opacity: 0.5;
+}
+.banner1{
+    width: 600px;
+    position: absolute;
+    margin-left: 60%;
+    margin-top: -600px;
+    
+    
+}
+

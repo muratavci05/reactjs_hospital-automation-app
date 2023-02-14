@@ -1,11 +1,18 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.bodyHome{
-    margin-block-end: 20px;
-    margin-left: 100px;
-    margin-right: 30px;
+.bodyHome {
+  margin-left: 40px;
+  margin-right: 30px;
+  
 }
+
+.gridContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

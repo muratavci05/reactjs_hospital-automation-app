@@ -26,11 +26,11 @@ const HomePage = (props) => {
           </AppBar>
         </Box>
       </header>
-      <span>Ana giriş sayfası</span>
-      <div>
-        <div></div>
+      
+      <div className="mainOne">
+        <Home />
+       
       </div>
-      <Home />
     </div>
   );
 };
