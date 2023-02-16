@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
 import AddPatient from "./Pages/AddPatient";
 import HomePage from "./Pages/HomePage";
 import Patients from "./Pages/Patients";

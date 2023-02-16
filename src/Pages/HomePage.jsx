@@ -14,12 +14,17 @@ const HomePage = (props) => {
     <div className="HomePage">
       <header>
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
+          <AppBar position="static"
+          sx={{
+            //navbar 
+            //backgroundColor:"#537FE7"
+          }}
+          >
             <Toolbar>
               <LocalHospitalIcon />
 
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Hospital
+                <h4>Hospital Automation App</h4>
               </Typography>
               <Button color="inherit"></Button>
             </Toolbar>

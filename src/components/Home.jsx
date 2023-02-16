@@ -34,7 +34,7 @@ const imageMuayene = [
     url: "/assets/doc.jpg",
     title: "MUAYENE",
     width: "30%",
-  } /* ,
+  },
   {
     url: '/assets/cocuk.jpg',
     title: 'ÇOCUK',
@@ -44,19 +44,20 @@ const imageMuayene = [
     url: '/assets/kdogumM2.jpg',
     title: 'KADIN-DOĞUM',
     width: '30%',
-  } */,
+  }
 ];
 
 //image button
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
-  marginTop: 50,
-  marginLeft: 5,
+  /* marginTop: 50, */
+  marginLeft: 15,
   height: 200,
 
   //image button responsive
   [theme.breakpoints.down("sm")]: {
     width: "100% !important", // Overrides inline-style
+    marginTop: 5,
     height: 100,
   },
   "&:hover, &.Mui-focusVisible": {
