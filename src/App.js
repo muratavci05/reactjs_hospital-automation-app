@@ -9,13 +9,12 @@ import Emergency from "./Pages/Emergency";
 function App() {
   return (
     <BrowserRouter>
-    
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/patients" element={<Patients/>}/>
-        <Route path="/add-patient" element={<AddPatient/>}/>
-        <Route path="/appointments" element={<HomeP/>}/>
-        <Route path="/emergency" element={<Emergency/>}/>
+        <Route path="/patients" element={<Patients />} />
+        <Route path="/add-patient" element={<AddPatient />} />
+        <Route path="/appointments" element={<HomeP />} />
+        <Route path="/emergency" element={<Emergency />} />
       </Routes>
     </BrowserRouter>
   );
