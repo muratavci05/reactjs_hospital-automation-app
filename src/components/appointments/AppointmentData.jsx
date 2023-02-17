@@ -6,10 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 export default function BasicTable() {
+
+  const navigate = useNavigate();
   const [randevular, setRandevular] = useState(null);
   const [hastalar, setHastalar] = useState(null);
   const [doktorlar, setDoktorlar] = useState(null);
@@ -54,6 +58,15 @@ export default function BasicTable() {
   }
   return (
     <TableContainer component={Paper}>
+       <div className="kayitButton">
+          <Button
+            onClick={() => navigate("/add-appointment-form")}
+            variant="outlined"
+            color="primary"
+          >
+            Randevu Oluştur
+          </Button>
+        </div>
       <Table sx={{ minWidth: 650, marginTop: 2 }} aria-label="simple table">
         <TableHead >
           <TableRow style={{ backgroundColor: "#A0CCDA" }}>

@@ -5,6 +5,7 @@ import HomePage from "./Pages/HomePage";
 import Patients from "./Pages/Patients";
 import HomeP from "./Pages/Appointments";
 import Emergency from "./Pages/Emergency";
+import AddAppointment from "./Pages/AddAppointment";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/add-patient" element={<AddPatient />} />
         <Route path="/appointments" element={<HomeP />} />
         <Route path="/emergency" element={<Emergency />} />
+        <Route path="/add-appointment-form" element={<AddAppointment />} />
       </Routes>
     </BrowserRouter>
   );
