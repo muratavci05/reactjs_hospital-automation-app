@@ -42,9 +42,9 @@ const AddPatientForm = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3004/hastalar")
-      .then((resPatients) => {
-        //console.log("hastalar", rePatients);
-        setPatients(resPatients.data);
+      .then((res) => {
+        //console.log("hastalar", res);
+        setPatients(res.data);
       })
       .catch((err) => console.log(err));
     axios
@@ -67,8 +67,6 @@ const AddPatientForm = () => {
       alert("Telefon Numarası 11 Haneli Olmalıdır");
       return;
     }
-
-    
     //console.log("yeni hasta", newPatient);
 
     //aynı telefon numarasına ait olan hastanın tekrardan kayıt altına alınmaması için

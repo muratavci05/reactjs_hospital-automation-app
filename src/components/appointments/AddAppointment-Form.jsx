@@ -1,8 +1,9 @@
-import * as React from "react";
+import React,{useState,useEffect} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import { Button } from "@mui/material";
+import { Button, MenuItem } from "@mui/material";
 import Box from "@mui/material/Box";
 
 import InputLabel from "@mui/material/InputLabel";
@@ -10,8 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 import "./style.css";
-import { useState } from "react";
-import { useEffect } from "react";
+
 
 function RedBar() {
   return (
@@ -24,7 +24,9 @@ function RedBar() {
 }
 
 const AppointmentForm = (props) => {
-  const [date, setDate] = useState(new Date());
+
+  const navigate = useNavigate();
+  const [date, setDate] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -42,13 +44,21 @@ const AppointmentForm = (props) => {
       .then((res) => {
         //console.log("Randevular İçinde Hastalar",res.data)
         setPatients(res.data);
+        axios
+          .get("http://localhost:3004/doktorlar_dahiliye")
+          .then((resDoctors) => {
+            //console.log("listDoctor",resDoctors)
+            setDoctors(resDoctors.data);
+          })
+          .catch((err) => console.log(err));
       })
+
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  if (patients === null) {
+  if (patients === null || doctors === null) {
     return (
       <div>
         <h3>Loading...</h3>
@@ -58,7 +68,56 @@ const AppointmentForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(date);
+    //console.log("handlesubmit",date);
+
+    if (date === "" || phone === "" || name === "" || surname === "" || discomfort === "" || doctor === ""){
+      alert("Bütün Alanları Girmek Zorunludur");
+      return;
+    }
+
+    if(phone.length !== 11){
+      alert("Telefon Numarasını 11 Haneli Girmeniz Gerekiyor")
+    }
+
+    if(hasPatient){
+      const newAppointment ={
+        id:String(new Date().getTime()),
+        date: date,
+        hastaId: hasPatient.id,
+        doctor:doctor,
+
+      }
+      
+      const newTransactions = {
+        id:String(new Date().getTime()+1),
+        discomfort: discomfort,
+        treatmentApplied: "",
+        prescriptions: [],
+      }
+
+      const updatePatient = {
+        ...hasPatient,
+        transactionsIds: [...hasPatient.transactionsIds, newTransactions.id],
+
+       
+      }
+      axios
+        .post("http://localhost:3004/randevular",newAppointment)
+        .then((res)=>{console.log("randevu kayıt",res)})
+        .catch((err)=>{console.log(err)})
+      axios
+        .post("http://localhost:3004/islemler",newTransactions)
+        .then((res)=>{console.log("randevu işlemler kayıt",res)})
+        .catch((err)=>{console.log(err)})
+      axios
+        .put(`http://localhost:3004/hastalar/${hasPatient.id}`,updatePatient)
+        .then((res)=>{console.log("güncellenmiş randevulu hasta",res)})
+        .catch((err)=>{console.log(err)})
+
+        navigate("/appointments")
+
+    }
+
   };
 
   const handlePhoneChange = (event) => {
@@ -71,14 +130,11 @@ const AppointmentForm = (props) => {
     if (searchPatient !== undefined) {
       setName(searchPatient.name);
       setSurname(searchPatient.surname);
-      setHasPatient(true)
-    } 
-    
-    else {
-      setName("")
-      setSurname("")
-      setHasPatient(false)
-      
+      setHasPatient(searchPatient);
+    } else {
+      setName("");
+      setSurname("");
+      setHasPatient(false);
     }
   };
 
@@ -155,13 +211,15 @@ const AppointmentForm = (props) => {
               value={doctor}
               onChange={(event) => setDoctor(event.target.value)}
             >
-              {/* {doctors.map((selectDoctor) => {
+              {doctors.map((selectDoctor) => {
                 return (
-                  <MenuItem key={selectDoctor.id} value={selectDoctor.fullname}>
+                  <MenuItem 
+                  key={selectDoctor.id} 
+                  value={selectDoctor.fullname}>
                     {selectDoctor.fullname}
                   </MenuItem>
                 );
-              })} */}
+              })}
             </Select>
           </FormControl>
 

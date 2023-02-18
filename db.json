@@ -1,37 +1,58 @@
 {
   "randevular": [
     {
-      "id": "1",
-      "date": "08.02.2023",
-      "hastaId": "1676156764836",
-      "doctorId": "3"
-    }
-  ],
-  
-  "hastalar": [
-    {
-      "id": "1676156764836",
-      "name": "mehmet",
-      "surname": "ak",
-      "phone": "01212341212",
-      "transactionsIds": [
-        "1676156764829"
-      ],
-      "doctor": "İç hastalıklar hekim1"
+      "id": "1676737326538",
+      "date": "2023-02-23T19:21",
+      "hastaId": "1676738045777",
+      "doctor": "Çocuk hekim1"
     },
     {
-      "id": "1676292072044",
-      "name": "orcun",
-      "surname": "deli",
-      "phone": "01112121111",
-      "transactionsIds": [
-        "1676292072035"
-      ],
+      "id": "1676738665771",
+      "date": "2023-02-26T19:44",
+      "hastaId": "1676738086093",
       "doctor": "İç hastalıklar hekim1"
     }
   ],
-
-
+  "hastalar": [
+    {
+      "id": "1676738045777",
+      "name": "murat",
+      "surname": "avcı",
+      "phone": "05555555555",
+      "transactionsIds": [
+        "1676738045749"
+      ],
+      "doctor": "dahiliye hekim2"
+    },
+    {
+      "id": "1676738086093",
+      "name": "sinan",
+      "surname": "arıcı",
+      "phone": "04444444444",
+      "transactionsIds": [
+        "1676738086086",
+        "1676738665772"
+      ],
+      "doctor": "dahiliye hekim1"
+    }
+  ],
+  "islemler": [
+    {
+      "id": "1",
+      "discomfort": "corona",
+      "treatmentApplied": "7 gun hastane yatış,istiharat",
+      "prescriptions": [
+        "parol,vitaminD,vitaminC"
+      ],
+      "doctorId": "3"
+    },
+    {
+      "id": "1676738665772",
+      "discomfort": "üşütme",
+      "treatmentApplied": "",
+      "prescriptions": []
+    }
+  ],
   "doktorlar_dahiliye": [
     {
       "id": "1",
@@ -84,40 +105,6 @@
     {
       "id": "4",
       "fullname": "Çocuk hekim1"
-    }
-  ],
-
-
-  "islemler": [
-    {
-      "id": "1",
-      "discomfort": "corona",
-      "treatmentApplied": "7 gun hastane yatış,istiharat",
-      "prescriptions": [
-        "parol,vitaminD,vitaminC"
-      ]
-    },
-    {
-      "id": "2",
-      "discomfort": "eklem ağrısı",
-      "treatmentApplied": "ayakta tedavi",
-      "prescriptions": [
-        "minoset",
-        "voltaren",
-        "vitaminB"
-      ]
-    },
-    {
-      "id": "1676157512527",
-      "discomfort": "",
-      "treatmentApplied": "",
-      "prescriptions": []
-    },
-    {
-      "id": "1676292072035",
-      "discomfort": "",
-      "treatmentApplied": "",
-      "prescriptions": []
     }
   ]
 }

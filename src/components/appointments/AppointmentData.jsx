@@ -27,7 +27,6 @@ export default function BasicTable() {
           .get("http://localhost:3004/hastalar")
           .then((resHastalar) => {
             setHastalar(resHastalar.data);
-            //console.log("hastalar randevu",resHastalar.data)
             axios
               .get("http://localhost:3004/doktorlar_dahiliye")
               .then((resDoktorlar) => {
@@ -84,7 +83,7 @@ export default function BasicTable() {
               (hasta) => hasta.id === randevu.hastaId
             );
             const secilenDoktor = doktorlar.find(
-              (doktor) => doktor.id === randevu.doctorId
+              (doktor) => doktor.fullname === randevu.doctor
             );
             return (
               <TableRow
