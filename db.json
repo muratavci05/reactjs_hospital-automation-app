@@ -7,6 +7,7 @@
       "doctorId": "3"
     }
   ],
+  
   "hastalar": [
     {
       "id": "1676156764836",
@@ -29,7 +30,9 @@
       "doctor": "İç hastalıklar hekim1"
     }
   ],
-  "doktorlar": [
+
+
+  "doktorlar_dahiliye": [
     {
       "id": "1",
       "fullname": "dahiliye hekim1"
@@ -47,6 +50,44 @@
       "fullname": "Çocuk hekim1"
     }
   ],
+  "doktorlar_cocuk": [
+    {
+      "id": "1",
+      "fullname": "dahiliye hekim1"
+    },
+    {
+      "id": "2",
+      "fullname": "dahiliye hekim2"
+    },
+    {
+      "id": "3",
+      "fullname": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "4",
+      "fullname": "Çocuk hekim1"
+    }
+  ],
+  "doktorlar_kadin_dogum": [
+    {
+      "id": "1",
+      "fullname": "dahiliye hekim1"
+    },
+    {
+      "id": "2",
+      "fullname": "dahiliye hekim2"
+    },
+    {
+      "id": "3",
+      "fullname": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "4",
+      "fullname": "Çocuk hekim1"
+    }
+  ],
+
+
   "islemler": [
     {
       "id": "1",

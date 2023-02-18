@@ -29,7 +29,7 @@ export default function BasicTable() {
             setHastalar(resHastalar.data);
             //console.log("hastalar randevu",resHastalar.data)
             axios
-              .get("http://localhost:3004/doktorlar")
+              .get("http://localhost:3004/doktorlar_dahiliye")
               .then((resDoktorlar) => {
                 setDoktorlar(resDoktorlar.data);
               })

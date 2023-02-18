@@ -48,7 +48,7 @@ const AddPatientForm = () => {
       })
       .catch((err) => console.log(err));
     axios
-      .get("http://localhost:3004/doktorlar")
+      .get("http://localhost:3004/doktorlar_dahiliye")
       .then((resDoctors) => {
         //console.log("listDoctor",resDoctors)
         setDoctors(resDoctors.data);

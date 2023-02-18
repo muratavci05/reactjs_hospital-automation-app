@@ -27,7 +27,7 @@ const PatientDatas = (props) => {
     axios.get("http://localhost:3004/hastalar").then((hastalarRes) => {
       setHastalar(hastalarRes.data);
     });
-    axios.get("http://localhost:3004/doktorlar").then((res) => {
+    axios.get("http://localhost:3004/doktorlar_dahiliye").then((res) => {
       setDoctors("doktorlar hastalar", res.data);
     });
     axios.get("http://localhost:3004/islemler").then((resIslemler) => {
