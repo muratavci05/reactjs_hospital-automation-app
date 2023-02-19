@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -12,7 +12,6 @@ import Select from "@mui/material/Select";
 
 import "./style.css";
 
-
 function RedBar() {
   return (
     <Box
@@ -24,7 +23,6 @@ function RedBar() {
 }
 
 const AppointmentForm = (props) => {
-
   const navigate = useNavigate();
   const [date, setDate] = useState("");
   const [phone, setPhone] = useState("");
@@ -68,56 +66,117 @@ const AppointmentForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //console.log("handlesubmit",date);
 
-    if (date === "" || phone === "" || name === "" || surname === "" || discomfort === "" || doctor === ""){
+    if (
+      date === "" ||
+      phone === "" ||
+      name === "" ||
+      surname === "" ||
+      discomfort === "" ||
+      doctor === ""
+    ) {
       alert("Bütün Alanları Girmek Zorunludur");
       return;
     }
 
-    if(phone.length !== 11){
-      alert("Telefon Numarasını 11 Haneli Girmeniz Gerekiyor")
+    if (phone.length !== 11) {
+      alert("Telefon Numarasını 11 Haneli Girmeniz Gerekiyor");
     }
 
-    if(hasPatient){
-      const newAppointment ={
-        id:String(new Date().getTime()),
+    if (hasPatient) {
+      const newAppointment = {
+        id: String(new Date().getTime()),
         date: date,
         hastaId: hasPatient.id,
-        doctor:doctor,
+        doctor: doctor,
+      };
 
-      }
-      
-      const newTransactions = {
-        id:String(new Date().getTime()+1),
+      const newTransaction = {
+        id: String(new Date().getTime() + 1),
         discomfort: discomfort,
         treatmentApplied: "",
         prescriptions: [],
-      }
+      };
 
       const updatePatient = {
         ...hasPatient,
-        transactionsIds: [...hasPatient.transactionsIds, newTransactions.id],
-
-       
-      }
+        transactionsIds: [...hasPatient.transactionsIds, newTransaction.id],
+      };
       axios
-        .post("http://localhost:3004/randevular",newAppointment)
-        .then((res)=>{console.log("randevu kayıt",res)})
-        .catch((err)=>{console.log(err)})
+        .post("http://localhost:3004/randevular", newAppointment)
+        .then((res) => {
+          console.log("randevu kayıt", res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       axios
-        .post("http://localhost:3004/islemler",newTransactions)
-        .then((res)=>{console.log("randevu işlemler kayıt",res)})
-        .catch((err)=>{console.log(err)})
+        .post("http://localhost:3004/islemler", newTransaction)
+        .then((res) => {
+          console.log("randevu işlemler kayıt", res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       axios
-        .put(`http://localhost:3004/hastalar/${hasPatient.id}`,updatePatient)
-        .then((res)=>{console.log("güncellenmiş randevulu hasta",res)})
-        .catch((err)=>{console.log(err)})
+        .put(`http://localhost:3004/hastalar/${hasPatient.id}`, updatePatient)
+        .then((res) => {
+          console.log("güncellenmiş randevulu hasta", res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-        navigate("/appointments")
+      navigate("/appointments");
+    } else {
+      const newTransaction = {
+        id: String(new Date().getTime()),
+        discomfort: discomfort,
+        treatmentApplied: "",
+        prescriptions: [],
+      };
 
+      const newPatient = {
+        id: String(new Date().getTime() + 1),
+        name: name,
+        surname: surname,
+        phone: phone,
+        transactionsIds: [newTransaction.id],
+        doctor: doctor,
+      };
+
+      const newAppointment = {
+        id: String(new Date().getTime() + 2),
+        date: date,
+        hastaId: newPatient.id,
+        doctor: doctor,
+      };
+
+      axios.post("http://localhost:3004/hastalar", newPatient).then((res) => {
+        console.log("Randevu'dan Yeni Hasta Kaydı", res);
+      });
+      axios
+        .post("http://localhost:3004/randevular", newAppointment)
+        .then((res) => {
+          console.log("Yeni Hastaya yeni Randevu Oluşturma", res);
+        })
+        .catch((err) => {
+          console.log("Yeni Hastaya Yeni Randevu Oluşturma Hata", err);
+        });
+      axios
+        .post("http://localhost:3004/islemler", newTransaction)
+        .then((res) => {
+          console.log("Yeni Randevulu Yeni Hastann İşlemi", res);
+        })
+        .catch((err) => {
+          console.log("Yeni Randevuu Yeni Hastanın İşlem Hatası", err);
+        })
+
+        .catch((err) => {
+          console.log("Randevulu Yeni Hasta Kaydı Hata", err);
+        });
+      navigate("/appointments");
     }
-
   };
 
   const handlePhoneChange = (event) => {
@@ -213,9 +272,7 @@ const AppointmentForm = (props) => {
             >
               {doctors.map((selectDoctor) => {
                 return (
-                  <MenuItem 
-                  key={selectDoctor.id} 
-                  value={selectDoctor.fullname}>
+                  <MenuItem key={selectDoctor.id} value={selectDoctor.fullname}>
                     {selectDoctor.fullname}
                   </MenuItem>
                 );
