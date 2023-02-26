@@ -13,12 +13,22 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 import "./style.css";
+import EditPatientModal from "../modal/EditPatientModal";
 
 const PatientDatas = (props) => {
   const [hastalar, setHastalar] = useState(null);
   const [doctors, setDoctors] = useState(null);
   const [islemler, setIslemler] = useState(null);
   const [randevular, setRandevular] = useState(null);
+
+  //modal
+  const [openEditModal,setOpenEditModal]=useState(false)
+  const handleClose = ()=>{
+    setOpenEditModal(false)
+  };
+  //Modal > Düzenlenecek Hasta seçimi
+  const [selectedPatient,setSelectedPatient] = useState(null)
+
   const navigate = useNavigate();
 
   const [updateComponent, setUpdateComponent] = useState(false);
@@ -53,7 +63,7 @@ const PatientDatas = (props) => {
     console.log("filtrelenmiş randevular", filteredRandevular);
     axios
       .delete(`http://localhost:3004/hastalar/${hasta.id}`)
-      .then((DeletePatientRes) => {
+      .then((res) => {
         hasta.transactionsIds.map((islemId) => {
           axios
             .delete(`http://localhost:3004/islemler/${islemId}`)
@@ -121,7 +131,14 @@ const PatientDatas = (props) => {
                 <TableCell>
                   <Box sx={{ "& button": { m: 0.1 } }}>
                     <div className="patientsButtons">
-                      <Button variant="outlined" size="small">
+
+                     {/* **** Modal **** */}
+                      <Button 
+                      onClick={()=>{
+                        setOpenEditModal(true)
+                        setSelectedPatient(hasta)
+                      }}
+                      variant="outlined" size="small">
                         Düzenle
                       </Button>
                       <Button
@@ -142,6 +159,14 @@ const PatientDatas = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <EditPatientModal 
+            updateComponent={updateComponent}
+            setUpdateComponent={setUpdateComponent}
+            hastalar={hastalar}
+            hasta={selectedPatient}
+            open={openEditModal}
+            handleClose={handleClose}
+            />
     </div>
   );
 };

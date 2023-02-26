@@ -257,7 +257,7 @@ export default function ButtonBases() {
 
                     pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                   }}
-                  onClick={() => navigate("/add-patient")}
+                  onClick={() => navigate("/add-appointment-form")}
                 >
                   {image.title}
                   <ImageMarked className="MuiImageMarked-root" />
