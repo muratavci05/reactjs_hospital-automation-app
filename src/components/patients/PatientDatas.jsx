@@ -148,7 +148,9 @@ const PatientDatas = (props) => {
                       >
                         Sil
                       </Button>
-                      <Button variant="outlined" size="small">
+                      <Button variant="outlined" size="small"
+                      onClick={()=>navigate(`/patient-details/${hasta.id}`)}
+                      >
                         Detay
                       </Button>
                     </div>

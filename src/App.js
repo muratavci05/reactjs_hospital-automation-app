@@ -6,6 +6,7 @@ import Patients from "./Pages/Patients";
 import HomeP from "./Pages/Appointments";
 import Emergency from "./Pages/Emergency";
 import AddAppointment from "./Pages/AddAppointment";
+import DetailPatients from "./Pages/DetailPatients";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/appointments" element={<HomeP />} />
         <Route path="/emergency" element={<Emergency />} />
         <Route path="/add-appointment-form" element={<AddAppointment />} />
+        <Route path="/patient-details/:patientId" element={<DetailPatients/>}/>
       </Routes>
     </BrowserRouter>
   );
