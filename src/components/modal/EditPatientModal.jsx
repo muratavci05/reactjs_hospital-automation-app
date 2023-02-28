@@ -106,19 +106,22 @@ const EditPatientModal = (props) => {
     }
     //console.log("yeni hasta", newPatient);
 
-    //edit içinde hasta telefon numarasının isim yada soyisim değişikliğinde kaydetmeyi engellemesi için
+    //hastalar içinden seçilen hastayı çıkartmak için
     const filteredPatients = hastalar.filter(
       (item) => item.phone !== hasta.phone
     );
 
-    //aynı telefon numarasına ait olan hastanın tekrardan kayıt altına alınmaması için
+    //Kalan hastalar içinden telefon numarası aynı olan varmı diye kontrol etmek için
     const hasNumber = filteredPatients.find((hasta) => hasta.phone === phone);
+
+    // eğer var ise alert ile hasta kaydı var uyarısı
     if (hasNumber !== undefined) {
       alert("Bu Telefon Numarasına Ait Hasta Kaydı Bulunmaktadır!");
       return;
     }
 
-    // edit işleminin set olması için
+    // değilse güncelleme işlemi olması için oluşturulan obje devreye girmesini istedim (updatePatient)
+
     const updatePatient = {
       ...hasta,
       name: name,
