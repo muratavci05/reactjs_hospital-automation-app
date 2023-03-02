@@ -49,8 +49,8 @@
     {
       "id": "1677185017318",
       "discomfort": "öksürük",
-      "treatmentApplied": "",
-      "prescriptions": []
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": ["parol","öksürük şurubu"]
     },
     {
       "id": "1677280476071",
