@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Typography } from "@mui/material";
 
 function RedBar() {
   return (
@@ -62,69 +63,137 @@ const PatientDetails = (props) => {
   }, []);
 
   return (
-    <div>
-      <form >
-        <div>
+    <React.Fragment>
+      <form>
+        <RedBar />
         <Box
+          component="form"
           sx={{
-            marginTop: "40px",
-            marginLeft: "15px",
-            "& .MuiTextField-root": { width: "45ch" },
+            "& > :not(style)": { m: 1, width: "25ch" },
           }}
+          noValidate
+          autoComplete="off"
         >
-          <RedBar />
-          <TextField label={patients?.name} id="margin-none" disabled />
-          <RedBar />
-          <TextField label={patients?.surname} id="margin-none" disabled />
-          <RedBar />
           <TextField
-            type={"number"}
-            label={patients?.phone}
-            id="margin-none"
-            disabled
+            label="Hasta İsim"
+            color="secondary"
+            focused
+            value={patients?.name}
           />
-          <RedBar />
-          <TextField label={"Hasta Giriş-acil-randevu vs."} id="margin-none" />
-          <RedBar />
-
-          <TextField label={patients?.doctor} id="margin-none" disabled />
-          <RedBar />
-
-          <div>
-            {patientTransactions.length === 0 ? (
-              <p>Hastaya ait işlem bulunmamaktadır</p>
-            ) : (
-              <div>
-                {patientTransactions.map((transaction) => (
-                  <div>
-                    <p>{transaction.discomfort}</p>
-                    <p>
-                      {transaction.treatmentApplied === "" ? (
-                        <span>Hastaya bir tedavi uygulanmamıştır</span>
-                      ) : (
-                        <span>{transaction.treatmentApplied}</span>
-                      )}{" "}
-                    </p>
-                    <p>
-                      {transaction.prescriptions.length === 0 ? (
-                        <span>Hastaya ilaç yazılmamış, reçete yok</span>
-                      ) : (
-                        <p>
-                          {transaction.prescriptions.map((medicament) => (
-                            <span>{medicament}</span>
-                          ))}
-                        </p>
-                      )}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <TextField
+            label="Hasta Soyİsim"
+            color="secondary"
+            focused
+            value={patients?.surname}
+          />
+          <TextField
+            label="Hasta Telefon "
+            color="secondary"
+            focused
+            value={patients?.phone}
+          />
+          <TextField
+            label="Hasta Giriş - Acil Randevu"
+            color="secondary"
+            focused
+          />
+          <TextField
+            label="Doktor"
+            color="secondary"
+            focused
+            value={patients?.doctor}
+          />
         </Box>
+        <div>
+          {/* ---------------ayrıldı---------------- */}
+          <p>İşlemler</p>
+          {/* bitiş */}
         </div>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "50ch", display:"flex",justifyContent:"space-evenly" },
+          }}
+          noValidate
+          autoComplete="off"
+          >
+          {patientTransactions.length === 0 ? (
+            <p style={{ color: "red" }}>
+              {" "}
+              *** Hastaya ait işlem bulunmamaktadır
+            </p>
+          ) : (
+            <Box>
+              {patientTransactions.map((transaction) => (
+                <Box
+                
+                >
+                  <TextField
+                    label="Hasta Şikayeti"
+                    variant="filled"
+                    color="success"
+                    value={transaction.discomfort}
+                    focused
+                    
+                  />
+
+                  <Typography>
+                    {transaction.treatmentApplied === "" ? (
+                      <span style={{ color: "red" }}>
+                        {" "}
+                        * Hastaya bir tedavi uygulanmamıştır
+                      </span>
+                    ) : (
+                      <Box>
+                        <TextField
+                          label="Muayene şekli"
+                          variant="filled"
+                          color="success"
+                          value={transaction.treatmentApplied}
+                          focused
+                          
+                        />
+                      </Box>
+                    )}{" "}
+                  </Typography>
+                  <Typography>
+                    {transaction.prescriptions.length === 0 ? (
+                      <span>Hastaya ilaç yazılmamış, reçete yok</span>
+                    ) : (
+                      <Typography
+                      
+                      >
+                        {transaction.prescriptions.map((medicament) => (
+                          <Box 
+                         
+                          >
+                            <TextField
+                              label="Reçete (ilaç vs)"
+                              variant="filled"
+                              color="success"
+                              value={medicament}
+                              focused
+
+                             
+                            />
+
+                           
+                            
+                          </Box>
+                        ))}
+                      </Typography>
+                    )}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+
+       
+        <RedBar />
       </form>
-    </div>
+    </React.Fragment>
   );
 };
 

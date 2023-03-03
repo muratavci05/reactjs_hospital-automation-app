@@ -11,6 +11,24 @@
       "date": "2023-02-28T08:19",
       "hastaId": "1677280476072",
       "doctor": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "1677844299502",
+      "date": "2023-03-22T14:51",
+      "hastaId": "1677185017319",
+      "doctor": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "1677846484903",
+      "date": "2023-03-17T15:32",
+      "hastaId": "1677185017319",
+      "doctor": "Çocuk hekim1"
+    },
+    {
+      "id": "1677848501263",
+      "date": "2023-03-24T16:01",
+      "hastaId": "1677848501262",
+      "doctor": "dahiliye hekim1"
     }
   ],
   "hastalar": [
@@ -20,7 +38,9 @@
       "surname": "avcı",
       "phone": "05555555555",
       "transactionsIds": [
-        "1677185017318"
+        "1677185017318",
+        "1677844299503",
+        "1677846484904"
       ],
       "doctor": "dahiliye hekim1"
     },
@@ -43,6 +63,26 @@
         "1677325616941"
       ],
       "doctor": "İç hastalıklar hekim1"
+    },
+    {
+      "id": "1677847816402",
+      "name": "ali ",
+      "surname": "ünal",
+      "phone": "04441009999",
+      "transactionsIds": [
+        "1677847816394"
+      ],
+      "doctor": "Çocuk hekim1"
+    },
+    {
+      "id": "1677848501262",
+      "name": "eda",
+      "surname": "çolak",
+      "phone": "02009998899",
+      "transactionsIds": [
+        "1677848501261"
+      ],
+      "doctor": "dahiliye hekim1"
     }
   ],
   "islemler": [
@@ -50,7 +90,9 @@
       "id": "1677185017318",
       "discomfort": "öksürük",
       "treatmentApplied": "ayakta tedavi",
-      "prescriptions": ["parol","öksürük şurubu"]
+      "prescriptions": [
+        "parol, öksürük şurubu"
+      ]
     },
     {
       "id": "1677280476071",
@@ -61,6 +103,34 @@
     {
       "id": "1677325616941",
       "discomfort": "",
+      "treatmentApplied": "",
+      "prescriptions": []
+    },
+    {
+      "id": "1677844299503",
+      "discomfort": "terleme",
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
+        "minoset, vitamin d, vitamin c"
+      ]
+    },
+    {
+      "id": "1677846484904",
+      "discomfort": "ishal",
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
+        "Probiyotik, vitamin B, Şurup"
+      ]
+    },
+    {
+      "id": "1677847816394",
+      "discomfort": "",
+      "treatmentApplied": "",
+      "prescriptions": []
+    },
+    {
+      "id": "1677848501261",
+      "discomfort": "baş dönmesi",
       "treatmentApplied": "",
       "prescriptions": []
     }
