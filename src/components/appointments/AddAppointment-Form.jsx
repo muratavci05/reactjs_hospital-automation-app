@@ -30,9 +30,11 @@ const AppointmentForm = (props) => {
   const [surname, setSurname] = useState("");
   const [discomfort, setDiscomfort] = useState("");
   const [doctor, setDoctor] = useState("");
+  const [policlinic,setPoliclinic]= useState("")
 
   const [patients, setPatients] = useState(null);
   const [doctors, setDoctors] = useState(null);
+  const [policlinics,setPoliclinics]=useState(null)
 
   const [hasPatient, setHasPatient] = useState(false);
 
@@ -48,6 +50,13 @@ const AppointmentForm = (props) => {
             //console.log("listDoctor",resDoctors)
             setDoctors(resDoctors.data);
           })
+          axios
+            .get("http://localhost:3004/dahiliye_poliknilik")
+            .then((resPoliclinic)=>{
+              //console.log("poliklinikler",resPoliclinic.data)
+              setPoliclinics(resPoliclinic.data)
+            })
+            .catch((err)=>{console.log(err)})
           .catch((err) => console.log(err));
       })
 
@@ -56,7 +65,7 @@ const AppointmentForm = (props) => {
       });
   }, []);
 
-  if (patients === null || doctors === null) {
+  if (patients === null || doctors === null || policlinics === null) {
     return (
       <div>
         <h3>Loading...</h3>
@@ -73,7 +82,8 @@ const AppointmentForm = (props) => {
       name === "" ||
       surname === "" ||
       discomfort === "" ||
-      doctor === ""
+      doctor === "" ||
+      policlinic === ""
     ) {
       alert("Bütün Alanları Girmek Zorunludur");
       return;
@@ -88,6 +98,7 @@ const AppointmentForm = (props) => {
         id: String(new Date().getTime()),
         date: date,
         hastaId: hasPatient.id,
+        policlinic:policlinic,
         doctor: doctor,
       };
 
@@ -95,7 +106,10 @@ const AppointmentForm = (props) => {
         id: String(new Date().getTime() + 1),
         discomfort: discomfort,
         treatmentApplied: "",
+        policlinic:policlinic,
+        doctor:doctor,
         prescriptions: [],
+       
       };
 
       const updatePatient = {
@@ -105,7 +119,7 @@ const AppointmentForm = (props) => {
       axios
         .post("http://localhost:3004/randevular", newAppointment)
         .then((res) => {
-          console.log("randevu kayıt", res);
+          //console.log("randevu kayıt", res);
         })
         .catch((err) => {
           console.log(err);
@@ -113,7 +127,7 @@ const AppointmentForm = (props) => {
       axios
         .post("http://localhost:3004/islemler", newTransaction)
         .then((res) => {
-          console.log("randevu işlemler kayıt", res);
+         console.log("randevu işlemler kayıt", res);
         })
         .catch((err) => {
           console.log(err);
@@ -132,6 +146,8 @@ const AppointmentForm = (props) => {
       const newTransaction = {
         id: String(new Date().getTime()),
         discomfort: discomfort,
+        policlinic:policlinic,
+        doctor:doctor,
         treatmentApplied: "",
         prescriptions: [],
       };
@@ -141,14 +157,17 @@ const AppointmentForm = (props) => {
         name: name,
         surname: surname,
         phone: phone,
-        transactionsIds: [newTransaction.id],
+        policlinic:policlinic,
         doctor: doctor,
+        transactionsIds: [newTransaction.id],
+       
       };
 
       const newAppointment = {
         id: String(new Date().getTime() + 2),
         date: date,
         hastaId: newPatient.id,
+        policlinic:policlinic,
         doctor: doctor,
       };
 
@@ -258,7 +277,29 @@ const AppointmentForm = (props) => {
             value={discomfort}
             onChange={(event) => setDiscomfort(event.target.value)}
           />
+           <RedBar />
+          <FormControl sx={{ minWidth: 360 }}>
+            <InputLabel id="demo-simple-select-label">
+              Poliklinik Seçiniz
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Doctor Seçiniz"
+              value={policlinic}
+              onChange={(event) => setPoliclinic(event.target.value)}
+            >
+              {policlinics.map((selectPoliclinic) => {
+                return (
+                  <MenuItem key={selectPoliclinic.id} value={selectPoliclinic.policlinicTitle}>
+                    {selectPoliclinic.policlinicTitle}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
           <RedBar />
+
           <FormControl sx={{ minWidth: 360 }}>
             <InputLabel id="demo-simple-select-label">
               Doktor Seçiniz

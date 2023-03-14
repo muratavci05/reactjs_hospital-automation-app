@@ -95,10 +95,10 @@ export default function BasicTable() {
                   {new Date(randevu.date).toLocaleString()}
                 </TableCell>
 
-                <TableCell>{aradigimHasta.name}</TableCell>
-                <TableCell>{aradigimHasta.surname}</TableCell>
-                <TableCell>{aradigimHasta.phone}</TableCell>
-                <TableCell>{secilenDoktor.fullname}</TableCell>
+                <TableCell>{aradigimHasta?.name}</TableCell>
+                <TableCell>{aradigimHasta?.surname}</TableCell>
+                <TableCell>{aradigimHasta?.phone}</TableCell>
+                <TableCell>{secilenDoktor?.fullname}</TableCell>
                 <TableCell>buraya buton gelecek</TableCell>
               </TableRow>
             );

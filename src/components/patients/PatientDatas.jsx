@@ -67,17 +67,19 @@ const PatientDatas = (props) => {
         hasta.transactionsIds.map((islemId) => {
           axios
             .delete(`http://localhost:3004/islemler/${islemId}`)
-            .then((IslemDeleteRes) => {})
+            .then((IslemDeleteRes) => {console.log("islem silme",IslemDeleteRes)})
             .catch((err) => console.log(err));
+           
         });
         filteredRandevular.map(item=>{
           axios.delete(`http://localhost:3004/randevular/${item.id}`)
           .then((res)=>{})
           .catch((err)=>console.log(err))
         })
-        setUpdateComponent(!updateComponent);
+       //setUpdateComponent(!updateComponent);
       })
       .catch((err) => console.log(err));
+      setUpdateComponent(!updateComponent);
   };
 
   if (

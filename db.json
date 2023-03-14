@@ -1,192 +1,117 @@
 {
-  "randevular": [
-    {
-      "id": "1677185017320",
-      "date": "2023-02-23T23:43",
-      "hastaId": "1677185017319",
-      "doctor": "dahiliye hekim1"
-    },
-    {
-      "id": "1677280476073",
-      "date": "2023-02-28T08:19",
-      "hastaId": "1677280476072",
-      "doctor": "İç hastalıklar hekim1"
-    },
-    {
-      "id": "1677844299502",
-      "date": "2023-03-22T14:51",
-      "hastaId": "1677185017319",
-      "doctor": "İç hastalıklar hekim1"
-    },
-    {
-      "id": "1677846484903",
-      "date": "2023-03-17T15:32",
-      "hastaId": "1677185017319",
-      "doctor": "Çocuk hekim1"
-    },
-    {
-      "id": "1677848501263",
-      "date": "2023-03-24T16:01",
-      "hastaId": "1677848501262",
-      "doctor": "dahiliye hekim1"
-    }
-  ],
-  "hastalar": [
-    {
-      "id": "1677185017319",
-      "name": "murat",
-      "surname": "avcı",
-      "phone": "05555555555",
-      "transactionsIds": [
-        "1677185017318",
-        "1677844299503",
-        "1677846484904"
-      ],
-      "doctor": "dahiliye hekim1"
-    },
-    {
-      "id": "1677280476072",
-      "name": "Berna",
-      "surname": "Adıgüzel",
-      "phone": "09009990909",
-      "transactionsIds": [
-        "1677280476071"
-      ],
-      "doctor": "İç hastalıklar hekim1"
-    },
-    {
-      "id": "1677325616948",
-      "name": "deneme1",
-      "surname": "deneme3",
-      "phone": "09009002329",
-      "transactionsIds": [
-        "1677325616941"
-      ],
-      "doctor": "İç hastalıklar hekim1"
-    },
-    {
-      "id": "1677847816402",
-      "name": "ali ",
-      "surname": "ünal",
-      "phone": "04441009999",
-      "transactionsIds": [
-        "1677847816394"
-      ],
-      "doctor": "Çocuk hekim1"
-    },
-    {
-      "id": "1677848501262",
-      "name": "eda",
-      "surname": "çolak",
-      "phone": "02009998899",
-      "transactionsIds": [
-        "1677848501261"
-      ],
-      "doctor": "dahiliye hekim1"
-    }
-  ],
-  "islemler": [
-    {
-      "id": "1677185017318",
-      "discomfort": "öksürük",
-      "treatmentApplied": "ayakta tedavi",
-      "prescriptions": [
-        "parol, öksürük şurubu"
-      ]
-    },
-    {
-      "id": "1677280476071",
-      "discomfort": "nezle",
-      "treatmentApplied": "",
-      "prescriptions": []
-    },
-    {
-      "id": "1677325616941",
-      "discomfort": "",
-      "treatmentApplied": "",
-      "prescriptions": []
-    },
-    {
-      "id": "1677844299503",
-      "discomfort": "terleme",
-      "treatmentApplied": "ayakta tedavi",
-      "prescriptions": [
-        "minoset, vitamin d, vitamin c"
-      ]
-    },
-    {
-      "id": "1677846484904",
-      "discomfort": "ishal",
-      "treatmentApplied": "ayakta tedavi",
-      "prescriptions": [
-        "Probiyotik, vitamin B, Şurup"
-      ]
-    },
-    {
-      "id": "1677847816394",
-      "discomfort": "",
-      "treatmentApplied": "",
-      "prescriptions": []
-    },
-    {
-      "id": "1677848501261",
-      "discomfort": "baş dönmesi",
-      "treatmentApplied": "",
-      "prescriptions": []
-    }
-  ],
+  "randevular": [],
+  "hastalar": [],
+  "islemler": [],
   "doktorlar_dahiliye": [
     {
       "id": "1",
-      "fullname": "dahiliye hekim1"
+      "fullname": "Özge Boğazlıyan",
+      "doctorTitle": "Uzman Hekim",
+      "policlinicId": "1"
     },
     {
       "id": "2",
-      "fullname": "dahiliye hekim2"
+      "fullname": "Selim İleri",
+      "doctorTitle": "Uzman Hekim",
+      "policlinicId": "1"
     },
     {
       "id": "3",
-      "fullname": "İç hastalıklar hekim1"
+      "fullname": "Orhan Avcıoğlu",
+      "doctorTitle": "Pratisyen Hekim",
+      "policlinicId": "1"
     },
     {
       "id": "4",
-      "fullname": "Çocuk hekim1"
+      "fullname": "Simge Coşkun Darıcı",
+      "doctorTitle": "Pratisyen Hekim",
+      "policlinicId": "1"
+    },
+    {
+      "id": "5",
+      "fullname": "Martin Mandex",
+      "doctorTitle": "Uzman Hekim",
+      "policlinicId": "1"
     }
   ],
   "doktorlar_cocuk": [
     {
       "id": "1",
-      "fullname": "dahiliye hekim1"
+      "fullname": "çocu hekim1"
     },
     {
       "id": "2",
-      "fullname": "dahiliye hekim2"
+      "fullname": "çocuk hekim2"
     },
     {
       "id": "3",
-      "fullname": "İç hastalıklar hekim1"
+      "fullname": "çocuk hekim3"
     },
     {
       "id": "4",
-      "fullname": "Çocuk hekim1"
+      "fullname": "Çocuk hekim4"
     }
   ],
   "doktorlar_kadin_dogum": [
     {
       "id": "1",
-      "fullname": "dahiliye hekim1"
+      "fullname": "Doğum acil hekim1"
     },
     {
       "id": "2",
-      "fullname": "dahiliye hekim2"
+      "fullname": "Doğum acil hekim2"
+    }
+  ],
+  "doktorlar_acil_servis": [
+    {
+      "id": "1",
+      "fullname": "acil doktor 1"
     },
+    {
+      "id": "2",
+      "fullname": "acil doktor 2"
+    }
+  ],
+  "dahiliye_poliknilik": [
+    {
+      "id": "1",
+      "policlinicTitle": "Dahiliye Servisi",
+      "policlinicId": "1"
+    }
+  ],
+  "acil_servis": [
+    {
+      "id": "2",
+      "policlinicTitle": "Genel Acil Servis",
+      "policlinicId": "2"
+    }
+  ],
+  "kadin_dogum": [
     {
       "id": "3",
-      "fullname": "İç hastalıklar hekim1"
-    },
+      "policlinicTitle": "Kadın Doğum",
+      "policlinicId": "3"
+    }
+  ],
+  "çocuk_servis": [
     {
       "id": "4",
-      "fullname": "Çocuk hekim1"
+      "policlinicTitle": "Çocuk Servisi",
+      "policlinicId": "4"
+    }
+  ],
+  "kadin_dogum_acil_servis": [
+    {
+      "id": "5",
+      "policlinicTitle": "Kadın Doğum",
+      "policlinicId": "3"
+    }
+  ],
+  "çocuk_acil_servis": [
+    {
+      "id": "6",
+      "policlinicTitle": "Çocuk Servisi",
+      "policlinicId": "4"
     }
   ]
 }

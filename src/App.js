@@ -18,7 +18,8 @@ function App() {
         <Route path="/appointments" element={<HomeP />} />
         <Route path="/emergency" element={<Emergency />} />
         <Route path="/add-appointment-form" element={<AddAppointment />} />
-        <Route path="/patient-details/:patientId" element={<DetailPatients/>}/>
+        <Route path="/patient-details/:patientId" element={<DetailPatients />}
+        />
       </Routes>
     </BrowserRouter>
   );

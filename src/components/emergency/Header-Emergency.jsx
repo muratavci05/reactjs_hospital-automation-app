@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 const EmergencyService = () => {
 
     const navigate=useNavigate();
@@ -27,10 +27,23 @@ const EmergencyService = () => {
             >
                 Anasayfa
             </Button>
+            <Button color="inherit">
+            <Link
+              to="/patients"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                
+              }}
+            >
+              Hastalar
+            </Link>
+          </Button>
+            
           </Toolbar>
         </AppBar>
       </Box>
-      <span>Emergency-Service</span>
+      <span>Acil Servis</span>
     </div>
   );
 };

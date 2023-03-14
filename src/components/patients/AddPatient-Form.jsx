@@ -13,6 +13,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+
+
 import "./style.css";
 
 function RedBar() {
@@ -26,14 +28,21 @@ function RedBar() {
 }
 
 const AddPatientForm = () => {
+
+  
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [transactions, setTransactions] = useState("");
   const [doctor, setDoctor] = useState("");
+  const [discomfort, setDiscomfort] = useState("");
+  const [policlinic, setPoliclinic] = useState("");
+
+  
 
   const navigate = useNavigate();
 
+  const [policlinics, setPoliclinics] = useState(null);
   // hastalar listesini çekmek için kullanılan state
   const [patients, setPatients] = useState(null);
   //Doktor listesi çekmek için kullanılan state
@@ -46,19 +55,39 @@ const AddPatientForm = () => {
         //console.log("hastalar", res);
         setPatients(res.data);
       })
-      .catch((err) => console.log(err));
+
+      .catch((err) => {
+        console.log(err);
+      });
     axios
-      .get("http://localhost:3004/doktorlar_dahiliye")
+      .get("http://localhost:3004/doktorlar_acil_servis")
       .then((resDoctors) => {
         //console.log("listDoctor",resDoctors)
         setDoctors(resDoctors.data);
+      })
+
+      .catch((err) => console.log(err));
+
+    axios
+      .get("http://localhost:3004/acil_servis")
+      .then((resAcilServis) => {
+        //console.log("hasta kayıt poliklinik",resPoliclinic.data)
+        
+        setPoliclinics(resAcilServis.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (name === "" || surname === "" || phone === "" || transactions === "" || doctor === "") {
+    if (
+      name === "" ||
+      surname === "" ||
+      phone === "" ||
+      transactions === "" ||
+      doctor === "" ||
+      policlinic === ""
+    ) {
       alert("Hasta Bilgilerini Eksiksiz Doldurunuz");
       return;
     }
@@ -76,36 +105,42 @@ const AddPatientForm = () => {
       return;
     }
 
-    const newTransaction ={
-      id: String(new Date().getTime()+1),
-      discomfort: "",
-      treatmentApplied:"",
-      prescriptions:[]
-
-    }
-    axios.post("http://localhost:3004/islemler/",newTransaction)
-    .then((resTransaction)=>{
-      const newPatient = {
-        id: String(new Date().getTime()),
-        name: name,
-        surname: surname,
-        phone: phone,
-        transactionsIds: [newTransaction.id],
-        doctor: doctor,
-      };
-      axios
-      .post("http://localhost:3004/hastalar/", newPatient)
-      .then((res) => {
-        console.log("new patients", res);
-        setName("");
-        setSurname("");
-        setPhone("");
-        setDoctor("");
-        navigate("/patients");
+    const newTransaction = {
+      id: String(new Date().getTime() + 1),
+      discomfort: transactions,
+      treatmentApplied: "",
+      policlinicId: policlinic,
+      doctor: doctor,
+      prescriptions: [],
+    };
+    axios
+      .post("http://localhost:3004/islemler/", newTransaction)
+      .then((resTransaction) => {
+        const newPatient = {
+          id: String(new Date().getTime()),
+          name: name,
+          surname: surname,
+          phone: phone,
+          policlinicTitle: policlinic,
+          doctor: doctor,
+          discomfort: transactions,
+          transactionsIds: [newTransaction.id],
+        };
+        axios
+          .post("http://localhost:3004/hastalar/", newPatient)
+          .then((res) => {
+            console.log("new patients", res);
+            setName("");
+            setSurname("");
+            setPhone("");
+            setPoliclinic("");
+            setDoctor("");
+            setDiscomfort("");
+            navigate("/patients");
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-    })
-    .catch((err)=>console.log(err))
 
     //yeni hasta kaydını veritabanına kaydetme
     /*  */
@@ -114,11 +149,31 @@ const AddPatientForm = () => {
     console.log("soyadı",surname)
     console.log("telefon",phone)
     console.log("doktor adı",doctor) */
+    console.log(discomfort)
+
   };
 
-  if (doctors === null) {
+  if (doctors === null || policlinics === null) {
     return <h1>Loading...</h1>;
   }
+
+  if(doctors.policlinicId === null || policlinic.policlinicId === null){
+    return <h1>Loading</h1>
+    
+  
+  }
+
+//poliklinik select 
+  const handlePoliclinicChange = (e) => {
+    setPoliclinic(e.target.value);
+    const listPoliclinic = policlinics.find(
+      (item) => item.policlinicTitle === e.target.value
+     
+    );
+    console.log("Seçilen Poliklinik",listPoliclinic)
+    
+
+    }
   return (
     <form onSubmit={handleSubmit}>
       <Box
@@ -162,7 +217,31 @@ const AddPatientForm = () => {
         <RedBar />
 
         {/* selectbar */}
-
+        <FormControl sx={{ minWidth: 360 }}>
+          <InputLabel id="demo-simple-select-label">
+            Poliklinik Seçiniz
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Poliklinik Seçiniz"
+            value={policlinic}
+            onChange={handlePoliclinicChange}
+            //onChange={()=>setPoliclinic(event.target.value)}
+          >
+            {policlinics.map((selectPoliclinic) => {
+              return (
+                <MenuItem
+                  key={selectPoliclinic.id}
+                  value={selectPoliclinic.policlinicTitle}
+                >
+                  {selectPoliclinic.policlinicTitle}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <RedBar />
         <FormControl sx={{ minWidth: 360 }}>
           <InputLabel id="demo-simple-select-label">Doktor Seçiniz</InputLabel>
           <Select
