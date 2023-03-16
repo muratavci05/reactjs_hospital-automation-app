@@ -109,6 +109,7 @@ const PatientDatas = (props) => {
               <TableCell>Adı</TableCell>
               <TableCell>Soyadı</TableCell>
               <TableCell>Telefon Numarası</TableCell>
+              <TableCell>Poliklinik</TableCell>
               <TableCell>Doktor</TableCell>
               <TableCell>İşlem</TableCell>
             </TableRow>
@@ -129,6 +130,7 @@ const PatientDatas = (props) => {
                 <TableCell>{hasta.name}</TableCell>
                 <TableCell>{hasta.surname}</TableCell>
                 <TableCell>{hasta.phone}</TableCell>
+                <TableCell>{hasta.policlinic || hasta.policlinicTitle}</TableCell>
                 <TableCell>{hasta.doctor}</TableCell>
                 <TableCell>
                   <Box sx={{ "& button": { m: 0.1 } }}>

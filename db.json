@@ -1,7 +1,144 @@
 {
-  "randevular": [],
-  "hastalar": [],
-  "islemler": [],
+  "randevular": [
+    {
+      "id": "1678877419024",
+      "date": "2023-03-16T13:50",
+      "hastaId": "1678877419023",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Selim İleri"
+    },
+    {
+      "id": "1678877686294",
+      "date": "2023-03-12T13:54",
+      "hastaId": "1678877686293",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Orhan Avcıoğlu"
+    },
+    {
+      "id": "1678880639226",
+      "date": "2023-03-30T14:43",
+      "hastaId": "1678880639225",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex"
+    },
+    {
+      "id": "1678961655465",
+      "date": "2023-03-29T13:13",
+      "hastaId": "1678880639225",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Özge Boğazlıyan"
+    }
+  ],
+  "hastalar": [
+    {
+      "id": "1678877419023",
+      "name": "ali",
+      "surname": "veli",
+      "phone": "09009009090",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Selim İleri",
+      "transactionsIds": [
+        "1678877419022"
+      ]
+    },
+    {
+      "id": "1678877451317",
+      "name": "selin",
+      "surname": "ak",
+      "phone": "08008009090",
+      "policlinicTitle": "Genel Acil Servis",
+      "doctor": "acil doktor 2",
+      "discomfort": "camdan düştü",
+      "transactionsIds": [
+        "1678877451309"
+      ]
+    },
+    {
+      "id": "1678877526645",
+      "name": "zeynep",
+      "surname": "çalışkan",
+      "phone": "05005005050",
+      "policlinicTitle": "Genel Acil Servis",
+      "doctor": "acil doktor 1",
+      "discomfort": "trafik kazası",
+      "transactionsIds": [
+        "1678877526638"
+      ]
+    },
+    {
+      "id": "1678877686293",
+      "name": "murat",
+      "surname": "alıcı",
+      "phone": "05555555555",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Orhan Avcıoğlu",
+      "transactionsIds": [
+        "1678877686292"
+      ]
+    },
+    {
+      "id": "1678880639225",
+      "name": "aslı",
+      "surname": "ünver",
+      "phone": "05005001010",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex",
+      "transactionsIds": [
+        "1678880639224",
+        "1678961655467"
+      ]
+    }
+  ],
+  "islemler": [
+    {
+      "id": "1678877419022",
+      "discomfort": "öksürük",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Selim İleri",
+      "treatmentApplied": "",
+      "prescriptions": []
+    },
+    {
+      "id": "1678877451309",
+      "discomfort": "camdan düştü",
+      "treatmentApplied": "ayakta tedavi",
+      "policlinicId": "Genel Acil Servis",
+      "doctor": "acil doktor 2",
+      "prescriptions": ["parol"]
+    },
+    {
+      "id": "1678877526638",
+      "discomfort": "trafik kazası",
+      "treatmentApplied": "",
+      "policlinicId": "Genel Acil Servis",
+      "doctor": "acil doktor 1",
+      "prescriptions": []
+    },
+    {
+      "id": "1678877686292",
+      "discomfort": "boğaz ağrısı",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Orhan Avcıoğlu",
+      "treatmentApplied": "",
+      "prescriptions": []
+    },
+    {
+      "id": "1678880639224",
+      "discomfort": "karın ağrısı",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex",
+      "treatmentApplied": "",
+      "prescriptions": []
+    },
+    {
+      "id": "1678961655467",
+      "discomfort": "nezle grip",
+      "treatmentApplied": "ayakta tedavi",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Özge Boğazlıyan",
+      "prescriptions": ["parol,şurup"]
+    }
+  ],
   "doktorlar_dahiliye": [
     {
       "id": "1",
