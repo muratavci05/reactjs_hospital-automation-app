@@ -13,27 +13,13 @@
       "hastaId": "1678877686293",
       "policlinic": "Dahiliye Servisi",
       "doctor": "Orhan Avcıoğlu"
-    },
-    {
-      "id": "1678880639226",
-      "date": "2023-03-30T14:43",
-      "hastaId": "1678880639225",
-      "policlinic": "Dahiliye Servisi",
-      "doctor": "Martin Mandex"
-    },
-    {
-      "id": "1678961655465",
-      "date": "2023-03-29T13:13",
-      "hastaId": "1678880639225",
-      "policlinic": "Dahiliye Servisi",
-      "doctor": "Özge Boğazlıyan"
     }
   ],
   "hastalar": [
     {
       "id": "1678877419023",
       "name": "ali",
-      "surname": "veli",
+      "surname": "velioğlu",
       "phone": "09009009090",
       "policlinic": "Dahiliye Servisi",
       "doctor": "Selim İleri",
@@ -75,18 +61,6 @@
       "transactionsIds": [
         "1678877686292"
       ]
-    },
-    {
-      "id": "1678880639225",
-      "name": "aslı",
-      "surname": "ünver",
-      "phone": "05005001010",
-      "policlinic": "Dahiliye Servisi",
-      "doctor": "Martin Mandex",
-      "transactionsIds": [
-        "1678880639224",
-        "1678961655467"
-      ]
     }
   ],
   "islemler": [
@@ -104,7 +78,9 @@
       "treatmentApplied": "ayakta tedavi",
       "policlinicId": "Genel Acil Servis",
       "doctor": "acil doktor 2",
-      "prescriptions": ["parol"]
+      "prescriptions": [
+        "parol"
+      ]
     },
     {
       "id": "1678877526638",
@@ -121,22 +97,6 @@
       "doctor": "Orhan Avcıoğlu",
       "treatmentApplied": "",
       "prescriptions": []
-    },
-    {
-      "id": "1678880639224",
-      "discomfort": "karın ağrısı",
-      "policlinic": "Dahiliye Servisi",
-      "doctor": "Martin Mandex",
-      "treatmentApplied": "",
-      "prescriptions": []
-    },
-    {
-      "id": "1678961655467",
-      "discomfort": "nezle grip",
-      "treatmentApplied": "ayakta tedavi",
-      "policlinic": "Dahiliye Servisi",
-      "doctor": "Özge Boğazlıyan",
-      "prescriptions": ["parol,şurup"]
     }
   ],
   "doktorlar_dahiliye": [

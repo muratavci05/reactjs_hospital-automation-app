@@ -5,7 +5,10 @@ import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
+import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import PrescriptionModal from "../modal/PrescriptionsModal";
 
 const theme = createTheme({
   palette: {
@@ -33,10 +36,18 @@ const PatientDetails = (props) => {
   const { patientId } = useParams();
 
   const [patients, setPatients] = useState(null);
- // const [policlinic, setPoliclinic] = useState(null);
- // const [doctors, setDoctors] = useState(null);
+  // const [policlinic, setPoliclinic] = useState(null);
+  // const [doctors, setDoctors] = useState(null);
   const [transactions, setTransactions] = useState(null);
   //const [appointment, setAppointment] = useState(null);
+
+  //----Modal-----
+  const [openPrescriptionModal, setOpenPrescriptionModal] = useState(false);
+  const [selectedTreatment, setSelectedTreatment] = useState(null);
+  const handleClosePrescription = () => {
+    setOpenPrescriptionModal(false);
+  };
+  // ----Modal yazılacak reçete seçimi----
 
   useEffect(() => {
     axios
@@ -44,25 +55,25 @@ const PatientDetails = (props) => {
       .then((hastalarRes) => {
         setPatients(hastalarRes.data);
         console.log("detaylar >>> hasta", hastalarRes.data);
-        axios.get("http://localhost:3004/islemler").then((resIslemler) => {
-          setTransactions(resIslemler.data);
-          console.log("detaylar İşlemler", resIslemler.data);
-          const tempPatientTransaction = [];
-          for (let i = 0; i < hastalarRes.data.transactionsIds.length; i++) {
-            const operation = resIslemler.data.find(
-              (item) => item.id === hastalarRes.data.transactionsIds[i]
+        axios
+          .get("http://localhost:3004/islemler")
+          .then((resIslemler) => {
+            setTransactions(resIslemler.data);
+            console.log("detaylar İşlemler", resIslemler.data);
+            const tempPatientTransaction = [];
+            for (let i = 0; i < hastalarRes.data.transactionsIds.length; i++) {
+              const operation = resIslemler.data.find(
+                (item) => item.id === hastalarRes.data.transactionsIds[i]
+              );
+              tempPatientTransaction.push(operation);
+            }
+            console.log("hasta işlem detayları", tempPatientTransaction);
+            setTransactions(tempPatientTransaction).catch((err) =>
+              console.log(err)
             );
-            tempPatientTransaction.push(operation);
-          }
-          console.log("hasta işlem detayları", tempPatientTransaction);
-          setTransactions(tempPatientTransaction)
-       
-          
-   
-      .catch((err) => console.log(err))
- })
-      .catch((err) => console.log("hastalar err", err))
-       })
+          })
+          .catch((err) => console.log("hastalar err", err));
+      });
   }, [patientId]);
 
   return (
@@ -193,39 +204,56 @@ const PatientDetails = (props) => {
                           value="Tedavi Uygulanmadı"
                         />
                       ) : (
-                        
-                         
-                            <TextField
-                            sx={{ marginTop: "5px", marginLeft: "5px" }}
-                              label="Tedavi"
-                              color="secondary"
-                              focused
-                              value={operation.treatmentApplied}
-                            />
-                         
-                        
+                        <TextField
+                          sx={{ marginTop: "5px", marginLeft: "5px" }}
+                          label="Tedavi"
+                          color="secondary"
+                          focused
+                          value={operation.treatmentApplied}
+                        />
                       )}
 
                       {operation.prescriptions.length === 0 ? (
-                        <TextField
-                          sx={{ marginTop: "5px", marginLeft: "5px" }}
-                          label="Reçete"
-                          color="danger"
-                          focused
-                          value="İlaç yazılmadı"
-                        />
+                        <>
+                          <TextField
+                            sx={{ marginTop: "5px", marginLeft: "5px" }}
+                            label="Reçete"
+                            color="danger"
+                            focused
+                            value="İlaç yazılmadı"
+                          />
+                          <Button
+                            onClick={() => {
+                              setOpenPrescriptionModal(true);
+                            }}
+                            label="Muayene"
+                            color="error"
+                          >
+                            Muayene{" "}
+                          </Button>
+                        </>
                       ) : (
-                       <>
+                        <>
                           {operation?.prescriptions.map((medicine) => (
                             <TextField
-                            sx={{ marginTop: "5px", marginLeft: "5px" }}
+                              sx={{ marginTop: "5px", marginLeft: "5px" }}
                               label="Reçete"
                               color="secondary"
                               focused
                               value={medicine}
                             />
                           ))}
-                       </>
+                          <Button
+                            onClick={() => {
+                              setOpenPrescriptionModal(true);
+                              setSelectedTreatment(operation);
+                            }}
+                            label="Reçete"
+                            color="secondary"
+                          >
+                            Reçete Yazdır
+                          </Button>
+                        </>
                       )}
 
                       <RedBar />
@@ -262,6 +290,11 @@ const PatientDetails = (props) => {
           </Box>
         </ThemeProvider> */}
       </form>
+      <PrescriptionModal
+        handleClose={handleClosePrescription}
+        open={openPrescriptionModal}
+        operation={selectedTreatment}
+      />
     </div>
   );
 };
