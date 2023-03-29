@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { TextField, Button } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -26,7 +28,9 @@ function RedBar() {
 }
 
 const PrescriptionModal = (props) => {
-  const { open, handleClose,operation } = props;
+
+  const navigate = useNavigate()
+  const { open, handleClose,operation,patientId } = props;
   //console.log("detaylar operation",operation)
 
   const [treatment,setTreatment]=useState(operation?.treatmentApplied)
@@ -35,11 +39,41 @@ const PrescriptionModal = (props) => {
 
   // "componentDidUpdate" oluşturuldu, (hasta her değiştiğinde güncellensin diye)...
   // dependency olarak tedavi ve reçete map'lediğim operation'su verdim
-  
+
   useEffect(()=>{
     setTreatment(operation?.treatmentApplied)
     setPrescription(operation?.prescriptions)
   },[operation]);
+
+
+  const [saveUpdate,setSaveUpdate]=useState(null)
+
+  
+  const handleSubmit =(event)=>{
+    event.preventDefault()
+
+    if(treatment === ""){
+      alert("Bütün alanları doldurmanız zorunludur")
+      return;
+    }
+    
+  const updateOperations={
+    ...operation,
+    treatmentApplied:treatment,
+    prescriptions: [prescription]
+  }
+  axios
+      .put(`http://localhost:3004/islemler/${operation?.id}`,updateOperations)
+      .then((res)=>{
+        //saveUpdate(res.data)
+        handleClose()
+       
+       
+      })
+      .catch((err)=>{console.log(err)})
+
+  }
+
 
   return (
     <div>
@@ -55,7 +89,7 @@ const PrescriptionModal = (props) => {
           >
             REÇETE
           </h1>
-
+    <form onSubmit={handleSubmit}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <TextField sx={{ width: "100%" }} label="Tedavi"
              value={treatment} 
@@ -78,16 +112,24 @@ const PrescriptionModal = (props) => {
               <Button onClick={handleClose} color="primary" size="small">
                 Çıkış
               </Button>
+              
+              <Button 
+              value={saveUpdate}
+              onClick={(e)=>setSaveUpdate(e.target.value)} 
+              color="secondary" 
+              variant="outlined" 
+              size="small"
+              type="submit"
 
-              <Button color="secondary" variant="outlined" size="small">
+              >
                 Güncelle
               </Button>
-              <Button color="error" variant="outlined" size="small">
-                Yazdır
-              </Button>
+             
             </Box>
           </Typography>
+          </form>
         </Box>
+        
       </Modal>
     </div>
   );

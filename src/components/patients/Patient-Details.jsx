@@ -54,12 +54,12 @@ const PatientDetails = (props) => {
       .get(`http://localhost:3004/hastalar/${patientId}`)
       .then((hastalarRes) => {
         setPatients(hastalarRes.data);
-        console.log("detaylar >>> hasta", hastalarRes.data);
+        //console.log("detaylar >>> hasta", hastalarRes.data);
         axios
           .get("http://localhost:3004/islemler")
           .then((resIslemler) => {
             setTransactions(resIslemler.data);
-            console.log("detaylar İşlemler", resIslemler.data);
+            //console.log("detaylar İşlemler", resIslemler.data);
             const tempPatientTransaction = [];
             for (let i = 0; i < hastalarRes.data.transactionsIds.length; i++) {
               const operation = resIslemler.data.find(
@@ -67,14 +67,14 @@ const PatientDetails = (props) => {
               );
               tempPatientTransaction.push(operation);
             }
-            console.log("hasta işlem detayları", tempPatientTransaction);
+            //console.log("hasta işlem detayları", tempPatientTransaction);
             setTransactions(tempPatientTransaction).catch((err) =>
               console.log(err)
             );
           })
           .catch((err) => console.log("hastalar err", err));
       });
-  }, [patientId]);
+  }, [patientId,patients]);
 
   return (
     <div style={{ marginLeft: "20px" }}>
@@ -225,6 +225,8 @@ const PatientDetails = (props) => {
                           <Button
                             onClick={() => {
                               setOpenPrescriptionModal(true);
+                              setSelectedTreatment(operation);
+
                             }}
                             label="Muayene"
                             color="error"
@@ -251,7 +253,7 @@ const PatientDetails = (props) => {
                             label="Reçete"
                             color="secondary"
                           >
-                            Reçete Yazdır
+                            Muayene Edildi
                           </Button>
                         </>
                       )}
@@ -294,6 +296,7 @@ const PatientDetails = (props) => {
         handleClose={handleClosePrescription}
         open={openPrescriptionModal}
         operation={selectedTreatment}
+        patientId={patientId}
       />
     </div>
   );

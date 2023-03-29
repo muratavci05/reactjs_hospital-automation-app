@@ -13,6 +13,13 @@
       "hastaId": "1678877686293",
       "policlinic": "Dahiliye Servisi",
       "doctor": "Orhan Avcıoğlu"
+    },
+    {
+      "id": "1680089173959",
+      "date": "2023-03-30T14:28",
+      "hastaId": "1680089173958",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex"
     }
   ],
   "hastalar": [
@@ -61,6 +68,17 @@
       "transactionsIds": [
         "1678877686292"
       ]
+    },
+    {
+      "id": "1680089173958",
+      "name": "neriman",
+      "surname": "köksal",
+      "phone": "02502502525",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex",
+      "transactionsIds": [
+        "1680089173957"
+      ]
     }
   ],
   "islemler": [
@@ -69,26 +87,30 @@
       "discomfort": "öksürük",
       "policlinic": "Dahiliye Servisi",
       "doctor": "Selim İleri",
-      "treatmentApplied": "",
-      "prescriptions": []
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
+        "mevcut ilaçlara devam"
+      ]
     },
     {
       "id": "1678877451309",
       "discomfort": "camdan düştü",
-      "treatmentApplied": "ayakta tedavi",
       "policlinicId": "Genel Acil Servis",
       "doctor": "acil doktor 2",
       "prescriptions": [
         "parol"
-      ]
+      ],
+      "treatmentApplied": "ayakta tedavi"
     },
     {
       "id": "1678877526638",
       "discomfort": "trafik kazası",
-      "treatmentApplied": "",
+      "treatmentApplied": "ayakta tedavi",
       "policlinicId": "Genel Acil Servis",
       "doctor": "acil doktor 1",
-      "prescriptions": []
+      "prescriptions": [
+        "yatak istirahati"
+      ]
     },
     {
       "id": "1678877686292",
@@ -97,6 +119,16 @@
       "doctor": "Orhan Avcıoğlu",
       "treatmentApplied": "",
       "prescriptions": []
+    },
+    {
+      "id": "1680089173957",
+      "discomfort": "karın ağrısı",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Martin Mandex",
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
+        "etol,şurup,probiyotik"
+      ]
     }
   ],
   "doktorlar_dahiliye": [
