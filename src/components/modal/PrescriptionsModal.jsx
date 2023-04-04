@@ -52,10 +52,10 @@ const PrescriptionModal = (props) => {
   const handleSubmit =(event)=>{
     event.preventDefault()
 
-    if(treatment === ""){
+    /* if(treatment === ""){
       alert("Bütün alanları doldurmanız zorunludur")
       return;
-    }
+    } */
     
   const updateOperations={
     ...operation,

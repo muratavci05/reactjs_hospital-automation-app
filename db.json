@@ -20,6 +20,20 @@
       "hastaId": "1680089173958",
       "policlinic": "Dahiliye Servisi",
       "doctor": "Martin Mandex"
+    },
+    {
+      "id": "1680243428091",
+      "date": "2023-04-06T11:20",
+      "hastaId": "1680243428090",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Simge Coşkun Darıcı"
+    },
+    {
+      "id": "1680243506554",
+      "date": "2023-04-08T14:18",
+      "hastaId": "1680243428090",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Orhan Avcıoğlu"
     }
   ],
   "hastalar": [
@@ -79,6 +93,18 @@
       "transactionsIds": [
         "1680089173957"
       ]
+    },
+    {
+      "id": "1680243428090",
+      "name": "eda",
+      "surname": "canlı",
+      "phone": "09888999898",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Simge Coşkun Darıcı",
+      "transactionsIds": [
+        "1680243428089",
+        "1680243506555"
+      ]
     }
   ],
   "islemler": [
@@ -98,9 +124,11 @@
       "policlinicId": "Genel Acil Servis",
       "doctor": "acil doktor 2",
       "prescriptions": [
-        "parol"
+        [
+          "ağrı kesici"
+        ]
       ],
-      "treatmentApplied": "ayakta tedavi"
+      "treatmentApplied": "yatarak tedavi "
     },
     {
       "id": "1678877526638",
@@ -129,6 +157,24 @@
       "prescriptions": [
         "etol,şurup,probiyotik"
       ]
+    },
+    {
+      "id": "1680243428089",
+      "discomfort": "boğaz ağrısı",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Simge Coşkun Darıcı",
+      "treatmentApplied": "ayakta tedavi",
+      "prescriptions": [
+        "parol,sprey,şurup"
+      ]
+    },
+    {
+      "id": "1680243506555",
+      "discomfort": "baş dönmesi",
+      "treatmentApplied": "",
+      "policlinic": "Dahiliye Servisi",
+      "doctor": "Orhan Avcıoğlu",
+      "prescriptions": []
     }
   ],
   "doktorlar_dahiliye": [
